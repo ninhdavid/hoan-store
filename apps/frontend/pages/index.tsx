@@ -1,14 +1,9 @@
 import styled from 'styled-components';
+import Wrapper from '../components/Common/Wrapper/Wrapper';
+import HeroBanner from '../components/Common/HeroBanner';
 
 const StyledPage = styled.div`
   .container {
-    width: 300px;
-    height: 300px;
-    background-color: #000;
-    color: white;
-  }
-  .text {
-    color: red;
   }
 `;
 
@@ -19,13 +14,16 @@ export function Index() {
    * Note: The corresponding styles are in the ./index.styled-components file.
    */
   return (
-    <StyledPage>
-      <div className="wrapper">
-        <div className="container">
-          <div className="text"> hello world </div>
-        </div>
-      </div>
-    </StyledPage>
+    <main>
+      <StyledPage>
+        <HeroBanner />
+        <Wrapper>
+          <div className="wrapper h-[2000px]">
+            <div className="container"></div>
+          </div>
+        </Wrapper>
+      </StyledPage>
+    </main>
   );
 }
 
