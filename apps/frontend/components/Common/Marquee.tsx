@@ -15,14 +15,12 @@ const marquee = (prev, trans) => keyframes`
 `;
 const TextAnimate = styled.div`
   will-change: transform;
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  transform: translateX(-100%);
+  position: relative;
+  transform: translateX(50vw);
 
   & p:nth-of-type(1) {
     transform: translateX(200%);
-    animation: ${marquee('200%', '-200%')} 32s linear infinite;
+    animation: ${marquee('200%', '-200%')} 20s linear infinite;
     right: 0;
     position: absolute;
     font-weight: 500;
@@ -30,8 +28,9 @@ const TextAnimate = styled.div`
 
   & p:nth-of-type(2) {
     transform: translateX(200%);
-    animation: ${marquee('200%', '-200%')} 32s linear infinite;
-    animation-delay: 8s;
+    animation: ${marquee('200%', '-200%')} 20s linear infinite;
+    animation-delay: 5s;
+
     right: 0;
     position: absolute;
     font-weight: 500;
@@ -39,16 +38,18 @@ const TextAnimate = styled.div`
 
   & p:nth-of-type(3) {
     transform: translateX(200%);
-    animation: ${marquee('200%', '-200%')} 32s linear infinite;
-    animation-delay: 16s;
+    animation: ${marquee('200%', '-200%')} 20s linear infinite;
+    animation-delay: 10s;
+
     right: 0;
     position: absolute;
     font-weight: 500;
   }
   & p:nth-of-type(4) {
     transform: translateX(200%);
-    animation: ${marquee('200%', '-200%')} 32s linear infinite;
-    animation-delay: 24s;
+    animation: ${marquee('200%', '-200%')} 20s linear infinite;
+    animation-delay: 15s;
+
     right: 0;
     position: absolute;
     font-weight: 500;

@@ -6,117 +6,151 @@ import { HiBars2 } from 'react-icons/hi2';
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
 import { VscChevronDown } from 'react-icons/vsc';
 import { FaRegUserCircle } from 'react-icons/fa';
+import { useAppDispatch, useAppSelector } from 'apps/frontend/store/reduxHooks';
+import {
+    fetchModalListSuccess,
+    modalActions,
+    selectModalLoading,
+    selectSetModal,
+} from '../Modals/MenuModalSlice';
+import styled from 'styled-components';
+import Modals from '../Modals/Modals';
+import ShopModalMenu from '../Modals/ShopModalMenu/ShopModalMenu';
 
+// eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
-
+const WrapperStyled = styled.div``;
 const Header = (props: Props) => {
-  const [navMobile, setNavMobile] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
-  const [showHeader, setShowHeader] = useState('translate-y-0');
-  const [mobileMenu, setMobileMenu] = useState(false);
+    const [lastScrollY, setLastScrollY] = useState(0);
+    const [showHeader, setShowHeader] = useState('translate-y-0');
+    const [mobileMenu, setMobileMenu] = useState(false);
 
-  const controlNavbar = () => {
-    if (window.scrollY > 200) {
-      if (window.scrollY > lastScrollY && !mobileMenu) {
-        setShowHeader('-translate-y-[80px]');
-      } else {
-        setShowHeader('shadow-sm');
-      }
-    } else {
-      setShowHeader('translate-y-0');
-    }
-    setLastScrollY(window.scrollY);
-  };
-  useEffect(() => {
-    window.addEventListener('scroll', controlNavbar);
-    return () => {
-      window.removeEventListener('scroll', controlNavbar);
+    const dispatch = useAppDispatch();
+    const showModal = useAppSelector(fetchModalListSuccess);
+    const isModal = useAppSelector(selectSetModal);
+
+    const controlNavbar = () => {
+        if (window.scrollY > 200) {
+            if (window.scrollY > lastScrollY && !mobileMenu) {
+                setShowHeader('-translate-y-[80px]');
+            } else {
+                setShowHeader('shadow-sm');
+            }
+        } else {
+            setShowHeader('translate-y-0');
+        }
+        setLastScrollY(window.scrollY);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lastScrollY]);
+    useEffect(() => {
+        window.addEventListener('scroll', controlNavbar);
+        return () => {
+            window.removeEventListener('scroll', controlNavbar);
+        };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lastScrollY]);
 
-  const handleOpenShop = () => {
-    setNavMobile(true);
-  };
-  return (
-    <div
-      className={`w-full flex justify-center z-20 sticky top-0 transition-transform duration-300 ${showHeader} `}
-    >
-      {navMobile && (
-        <div>
-          <NavMobile />
-        </div>
-      )}
-      <div className="w-full max-w-[1800px]  bg-white  h-[60px]  flex justify-center items-center fixed px-[30px] lg:px-14 xl:px-[80px] md:h-[80px]">
-        <div className="w-[100%] mt-2 flex items-center  ">
-          <div className="flex-1 lg:block hidden ">
-            <div className="w-[70%] lg:w-[80%] xl:w-[60%] 2xl:w-[50%]">
-              <div className="w-[100%] flex justify-between items-center">
-                <div className="flex items-center hover:cursor-pointer">
-                  <span onClick={handleOpenShop} className="font-medium">
-                    SHOP
-                  </span>
-                  <span className="pl-1 xl:-mr-1">
-                    <VscChevronDown />
-                  </span>
-                </div>
-                <div>
-                  <span className="font-medium hover:cursor-pointer">
-                    DISCOVER
-                  </span>
-                </div>
-                <div className="lg:-mr-3 xl:-mr-1">
-                  <span className="font-medium hover:cursor-pointer">
-                    CO-BRAND
-                  </span>
-                </div>
-              </div>
-            </div>
-          </div>
+    const handleOpenShop = () => {
+        dispatch(modalActions.setModal(!isModal));
+    };
+    return (
+        <WrapperStyled>
+            {isModal && (
+                <Modals>
+                    <ShopModalMenu />
+                </Modals>
+            )}
+            <div
+                className={`bg-white font-semibold  w-full h-[60px] flex justify-center items-center z-20 sticky top-0 transition-transform duration-300 lg:h-[80x] xl:mx-auto ${showHeader} `}
+            >
+                <div className="w-full bg-white  flex justify-center items-center fixed ">
+                    <div className=" max-w-[1800px]  w-[100%]  flex items-center  px-[24px] md:px-[30px] lg:px-12 xl:px-[80px] lg:mt-2 2xl:mt-3 lg:h-[80px] ">
+                        <div className="flex-1 lg:block hidden ">
+                            <div className="w-[70%] lg:w-[90%] xl:w-[70%] 2xl:w-[60%]">
+                                <div className="w-[100%] flex justify-between items-center">
+                                    <div className="flex items-center hover:cursor-pointer">
+                                        <span onClick={handleOpenShop} className="font-semibold">
+                                            SHOP
+                                        </span>
+                                        <span className="pl-1 xl:-mr-1">
+                                            <VscChevronDown />
+                                        </span>
+                                    </div>
+                                    <div>
+                                        <span className="font-semibold hover:cursor-pointer">
+                                            DISCOVER
+                                        </span>
+                                    </div>
+                                    <div className="lg:-mr-3 xl:-mr-1">
+                                        <span className="font-semibold hover:cursor-pointer">
+                                            CO-BRAND
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-          {/*mobile & table*/}
-          <div className="flex-1 justify-start items-center lg:hidden">
-            <div className="max-w-[64px] flex justify-between items-center sm:max-w-[100px] md:max-w-[120px]">
-              <HiBars2 className="text-2xl text-gray-800 hover:cursor-pointer" />
-              <IoSearchOutline className="text-2xl text-gray-800 lg:hidden hover:cursor-pointer" />
-            </div>
-          </div>
+                        {/*mobile & table*/}
+                        <div className="flex-1 justify-start items-center lg:hidden">
+                            <div className="max-w-[64px] flex justify-between items-center sm:max-w-[100px] md:max-w-[120px]">
+                                <HiBars2
+                                    onClick={handleOpenShop}
+                                    className="text-2xl text-gray-800 hover:cursor-pointer"
+                                />
+                                <IoSearchOutline className="text-2xl text-gray-800 lg:hidden hover:cursor-pointer" />
+                            </div>
+                        </div>
 
-          <div className="flex flex-1 justify-center ">
-            <Link href="/">
-              {/* <Image src={logo} alt="logo" /> */}
-              {/* eslint-disable-next-line @next/next/no-img-element*/}
-              <img
-                src="/logo.png"
-                alt="logo"
-                className="object-contain h-[40px] hover:cursor-pointer md:object-fill md:w-[120px]"
-              />
-            </Link>
-          </div>
-          <div></div>
-          {/*mobile & table*/}
-          <div className="flex flex-1 justify-end items-center">
-            <div className="flex items-center justify-end w-[100%]">
-              <div className="w-[50%] lg:w-[95%] xl:w-[66%] 2xl:w-[60%]">
-                <div className="w-[100%] flex justify-end items-center">
-                  <div className="flex justify-around items-center sm:min-w-[120px] md:min-w-[160px] md:-mr-3 lg:min-w-[100%]">
-                    <div className=" mr-5 lg:block hidden md:mr-0">
-                      <span className="font-medium hover:cursor-pointer">
-                        REFER A FRIEND
-                      </span>
+                        <div className="flex flex-1 justify-center ">
+                            <Link href="/">
+                                {/* <Image src={logo} alt="logo" /> */}
+                                {/* eslint-disable-next-line @next/next/no-img-element*/}
+                                <img
+                                    src="/logo.png"
+                                    alt="logo"
+                                    className="object-contain h-[40px] hover:cursor-pointer md:object-fill md:w-[120px]"
+                                />
+                            </Link>
+                        </div>
+                        <div></div>
+                        {/*mobile & table*/}
+                        <div className="flex flex-1 justify-end items-center">
+                            <div className="flex items-center justify-end w-[100%]">
+                                <div className="w-[50%] lg:w-[100%] xl:w-[80%] 2xl:w-[70%]">
+                                    <div className="w-[100%] flex justify-end items-center">
+                                        <div className="flex justify-between items-center sm:min-w-[100px] md:min-w-[120px] lg:min-w-[100%]">
+                                            <div
+                                                id="refer-div"
+                                                className="hidden mr-5 md:-mr-2 lg:block  "
+                                            >
+                                                <span className=" font-semibold hover:cursor-pointer ">
+                                                    REFER A FRIEND
+                                                </span>
+                                            </div>
+                                            <div className="hidden overflow-hidden max-w-[] text-2xl mr-5 text-gray-800 border border-slate-300 transition-all ease-in-out duration-500 rounded-full hover:bg-slate-100 md:-mr-2 lg:block 2xl:text-3xl is-search">
+                                                <label className=" group/item relative flex items-center justify-between py-1 transition-all ease-in-out duration-500">
+                                                    <span className="sr-only">Search</span>
+                                                    <span className="px-1 inset-y-0 flex items-center ">
+                                                        <IoSearchOutline className="py-1" />
+                                                    </span>
+                                                    <span className="hidden opacity-0 py-1 px-2 text-center bg-transparent  shadow-sm transition-all ease-in-out duration-500 text-sm group-hover/item:opacity-100 group-hover/item:block ">
+                                                        Search
+                                                    </span>
+                                                </label>
+                                            </div>
+                                            <div className="flex flex-1 items-center justify-between md:max-w-[120px] lg:flex-0 lg:max-w-[86px] xl:max-w-[86px] 2xl:max-w-[100px]">
+                                                <IoCartOutline className="text-2xl mr-4 text-gray-800 hover:cursor-pointer lg:-mr-2 2xl:text-3xl" />
+                                                <FaRegUserCircle className="text-2xl  text-gray-800  hover:cursor-pointer  md:-mr-0 2xl:text-3xl" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <IoSearchOutline className="hidden text-2xl mr-5 text-gray-800 hover:cursor-pointer md:-mr-2 lg:block 2xl:text-3xl" />
-                    <IoCartOutline className="text-2xl mr-5 text-gray-800 hover:cursor-pointer md:-mr-2 2xl:text-3xl" />
-                    <FaRegUserCircle className="text-2xl text-gray-800 hover:cursor-pointer md:mr-0 2xl:text-3xl" />
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+        </WrapperStyled>
+    );
 };
 
 export default Header;

@@ -2,10 +2,7 @@ import styled from 'styled-components';
 import Wrapper from '../components/Common/Wrapper/Wrapper';
 import HeroBanner from '../components/Common/HeroBanner';
 
-const StyledPage = styled.div`
-  .container {
-  }
-`;
+const StyledPage = styled.div``;
 
 export function Index() {
   /*
@@ -15,14 +12,14 @@ export function Index() {
    */
   return (
     <main>
-      <StyledPage>
+      <div className=" mx-auto">
         <HeroBanner />
-        <Wrapper>
-          <div className="wrapper h-[2000px]">
-            <div className="container"></div>
-          </div>
-        </Wrapper>
-      </StyledPage>
+        <StyledPage className="w-full">
+          <Wrapper className="  max-w-[1640px] bg-black">
+            <div className=" h-[2000px]"></div>
+          </Wrapper>
+        </StyledPage>
+      </div>
     </main>
   );
 }
