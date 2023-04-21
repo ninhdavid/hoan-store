@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { RootState } from 'apps/frontend/store/store';
+import { RootState } from '@/store/store';
 
 export interface ModalState {
     loading: boolean;

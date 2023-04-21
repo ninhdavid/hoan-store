@@ -57,6 +57,7 @@
     "jest-environment-node": "^29.4.1",
     "next-redux-wrapper": "^8.1.0",
     "nx": "15.9.2",
+    "popmotion": "^11.0.5",
     "postcss": "^8.4.21",
     "prettier": "^2.6.2",
     "react-icons": "^4.8.0",

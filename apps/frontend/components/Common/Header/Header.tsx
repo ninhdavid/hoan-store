@@ -6,7 +6,7 @@ import { HiBars2 } from 'react-icons/hi2';
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
 import { VscChevronDown } from 'react-icons/vsc';
 import { FaRegUserCircle } from 'react-icons/fa';
-import { useAppDispatch, useAppSelector } from 'apps/frontend/store/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/store/reduxHooks';
 import {
     fetchModalListSuccess,
     modalActions,
@@ -16,10 +16,17 @@ import {
 import styled from 'styled-components';
 import Modals from '../Modals/Modals';
 import ShopModalMenu from '../Modals/ShopModalMenu/ShopModalMenu';
+import Search from '../Modals/Search/Search';
+import EmptyProduct from '../Modals/Cart/EmptyProduct';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
-const WrapperStyled = styled.div``;
+
+const WrapperStyled = styled.div`
+    .is-search {
+        cursor: pointer;
+    }
+`;
 const Header = (props: Props) => {
     const [lastScrollY, setLastScrollY] = useState(0);
     const [showHeader, setShowHeader] = useState('translate-y-0');
@@ -49,6 +56,12 @@ const Header = (props: Props) => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [lastScrollY]);
 
+    useEffect(() => {
+        if (!isModal) {
+            document.body.style.overflow = 'auto';
+        }
+    }, [isModal]);
+
     const handleOpenShop = () => {
         dispatch(modalActions.setModal(!isModal));
     };
@@ -56,7 +69,9 @@ const Header = (props: Props) => {
         <WrapperStyled>
             {isModal && (
                 <Modals>
-                    <ShopModalMenu />
+                    {/* <ShopModalMenu /> */}
+                    {/* <Search /> */}
+                    <EmptyProduct handleOpenShop={handleOpenShop} />
                 </Modals>
             )}
             <div
@@ -115,19 +130,19 @@ const Header = (props: Props) => {
                         {/*mobile & table*/}
                         <div className="flex flex-1 justify-end items-center">
                             <div className="flex items-center justify-end w-[100%]">
-                                <div className="w-[50%] lg:w-[100%] xl:w-[80%] 2xl:w-[70%]">
+                                <div className="w-[50%] lg:w-[100%] xl:w-[90%] 2xl:w-[75%]">
                                     <div className="w-[100%] flex justify-end items-center">
                                         <div className="flex justify-between items-center sm:min-w-[100px] md:min-w-[120px] lg:min-w-[100%]">
                                             <div
                                                 id="refer-div"
-                                                className="hidden mr-5 md:-mr-2 lg:block  "
+                                                className="hidden justify-self-start mr-5 md:-mr-2 lg:block lg:pr-3 lg:pl-[2px] xl:pr-0 xl:-mr-0 2xl:pl-10  "
                                             >
                                                 <span className=" font-semibold hover:cursor-pointer ">
                                                     REFER A FRIEND
                                                 </span>
                                             </div>
-                                            <div className="hidden overflow-hidden max-w-[] text-2xl mr-5 text-gray-800 border border-slate-300 transition-all ease-in-out duration-500 rounded-full hover:bg-slate-100 md:-mr-2 lg:block 2xl:text-3xl is-search">
-                                                <label className=" group/item relative flex items-center justify-between py-1 transition-all ease-in-out duration-500">
+                                            <div className="hidden group/item overflow-hidden max-w-[] text-2xl mr-5 text-gray-800 border border-slate-300 transition ease-in-out duration-500 rounded-full hover:bg-slate-100 md:-mr-2 lg:block 2xl:text-3xl is-search ">
+                                                <label className="relative flex items-center justify-between py-1 transition-all ease-in-out duration-500 hover:cursor-pointer">
                                                     <span className="sr-only">Search</span>
                                                     <span className="px-1 inset-y-0 flex items-center ">
                                                         <IoSearchOutline className="py-1" />
@@ -137,7 +152,7 @@ const Header = (props: Props) => {
                                                     </span>
                                                 </label>
                                             </div>
-                                            <div className="flex flex-1 items-center justify-between md:max-w-[120px] lg:flex-0 lg:max-w-[86px] xl:max-w-[86px] 2xl:max-w-[100px]">
+                                            <div className="flex flex-1 items-center justify-between md:max-w-[120px] lg:flex-0 lg:max-w-[86px] lg:pl-2 xl:pl-1 xl:max-w-[86px] 2xl:max-w-[100px]">
                                                 <IoCartOutline className="text-2xl mr-4 text-gray-800 hover:cursor-pointer lg:-mr-2 2xl:text-3xl" />
                                                 <FaRegUserCircle className="text-2xl  text-gray-800  hover:cursor-pointer  md:-mr-0 2xl:text-3xl" />
                                             </div>
