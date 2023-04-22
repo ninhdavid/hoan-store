@@ -6,18 +6,20 @@ import { HiBars2 } from 'react-icons/hi2';
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
 import { VscChevronDown } from 'react-icons/vsc';
 import { FaRegUserCircle } from 'react-icons/fa';
-import { useAppDispatch, useAppSelector } from '@/store/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import {
     fetchModalListSuccess,
     modalActions,
     selectModalLoading,
     selectSetModal,
-} from '../Modals/MenuModalSlice';
+} from '@/redux/ActionsReducer/MenuModal/MenuModalSlice';
 import styled from 'styled-components';
 import Modals from '../Modals/Modals';
 import ShopModalMenu from '../Modals/ShopModalMenu/ShopModalMenu';
-import Search from '../Modals/Search/Search';
-import EmptyProduct from '../Modals/Cart/EmptyProduct';
+import Search from '../Search/Search';
+import EmptyProduct from '../Cart/EmptyProduct';
+import useWindowSize from '@/lib/hooks/common/useWindowSize';
+import { EventTargetHandler } from '@/types/common/types';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -30,6 +32,8 @@ const WrapperStyled = styled.div`
 const Header = (props: Props) => {
     const [lastScrollY, setLastScrollY] = useState(0);
     const [showHeader, setShowHeader] = useState('translate-y-0');
+    const [isModalClose, setIsModalClose] = useState(false);
+
     const [mobileMenu, setMobileMenu] = useState(false);
 
     const dispatch = useAppDispatch();
@@ -63,7 +67,7 @@ const Header = (props: Props) => {
     }, [isModal]);
 
     const handleOpenShop = () => {
-        dispatch(modalActions.setModal(!isModal));
+        dispatch(modalActions.setModal(!isModal)); // cần thời gian load data thì thêm 0.1>0.2 (Nếu thêm thì phải tăng tất cả các chỗ khác tương ứng)
     };
     return (
         <WrapperStyled>
@@ -75,17 +79,18 @@ const Header = (props: Props) => {
                 </Modals>
             )}
             <div
-                className={`bg-white font-semibold  w-full h-[60px] flex justify-center items-center z-20 sticky top-0 transition-transform duration-300 lg:h-[80x] xl:mx-auto ${showHeader} `}
+                className={`bg-white font-semibold  w-full h-[60px] flex justify-center items-center z-20 sticky top-0 transition-transform duration-300 linear lg:h-[80x] xl:mx-auto ${showHeader} `}
             >
                 <div className="w-full bg-white  flex justify-center items-center fixed ">
-                    <div className=" max-w-[1800px]  w-[100%]  flex items-center  px-[24px] md:px-[30px] lg:px-12 xl:px-[80px] lg:mt-2 2xl:mt-3 lg:h-[80px] ">
+                    <div className=" max-w-[1800px] h-[60px]  w-[100%]  flex items-center  px-[24px] md:px-[30px] lg:px-12 xl:px-[80px] lg:mt-2 2xl:mt-3 lg:h-[80px] ">
                         <div className="flex-1 lg:block hidden ">
                             <div className="w-[70%] lg:w-[90%] xl:w-[70%] 2xl:w-[60%]">
                                 <div className="w-[100%] flex justify-between items-center">
-                                    <div className="flex items-center hover:cursor-pointer">
-                                        <span onClick={handleOpenShop} className="font-semibold">
-                                            SHOP
-                                        </span>
+                                    <div
+                                        onClick={handleOpenShop}
+                                        className="flex items-center hover:cursor-pointer"
+                                    >
+                                        <span className="font-semibold">SHOP</span>
                                         <span className="pl-1 xl:-mr-1">
                                             <VscChevronDown />
                                         </span>

@@ -11,7 +11,7 @@ const Search = (props: Props) => {
             <div className="bg-white w-full h-[300px] px-6">
                 <div className="relative flex items-center justify-end w-full ">
                     <span
-                        className={`absolute flex items-center justify-center top-6  w-10 h-10  text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:bg-gray-100 hover:cursor-pointer focus:bg-white   `}
+                        className={`absolute flex items-center justify-center top-6  w-10 h-10  text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:-translate-y-1 hover:bg-gray-100 hover:cursor-pointer focus:bg-white   `}
                     >
                         <HiXMark />
                     </span>

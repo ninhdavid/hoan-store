@@ -9,7 +9,7 @@ import {
 import createSagaMiddleware from 'redux-saga';
 import { createWrapper, Context, HYDRATE, MakeStore } from 'next-redux-wrapper';
 import rootSaga from './rootSaga';
-import modalReducer from '../components/Common/Modals/MenuModalSlice';
+import modalReducer from '../ActionsReducer/MenuModal/MenuModalSlice';
 
 const rootReducer = combineReducers({
     modal: modalReducer,

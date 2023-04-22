@@ -1,8 +1,8 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import '../styles/styles.css';
-import Header from '../components/Common/Header/Header';
-import { reduxWrapper } from '../store/store';
+import Header from '../components/Header/Header';
+import { reduxWrapper } from '@/redux/store/store';
 import { Provider } from 'react-redux';
 
 function CustomApp({ Component, ...rest }: AppProps) {

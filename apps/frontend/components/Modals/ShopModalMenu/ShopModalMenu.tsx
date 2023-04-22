@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
-import { modalActions, selectSetModal } from '../MenuModalSlice';
+import { modalActions, selectSetModal } from '@/redux/ActionsReducer/MenuModal/MenuModalSlice';
 import Link from 'next/link';
 import { EventTargetHandler } from '@/types/common/types';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
-import { useAppDispatch, useAppSelector } from '@/store/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import { ModalWrapperStyled } from '@/styles/ModalMenu';
+import { motion } from 'framer-motion';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -177,7 +178,9 @@ function ShopModalMenu({ ...props }: Props) {
                 </div>
             )}
             {width >= 1024 && (
-                <div
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     onClick={handleCloseModal}
                     className="group absolute invisible h-full w-[23%] right-0 top-0 lg:visible xl:w-[37%] 2xl:w-[55%]"
                 >
@@ -186,17 +189,19 @@ function ShopModalMenu({ ...props }: Props) {
                             Continue Shopping
                         </span>
                     </div>
-                </div>
+                </motion.div>
             )}
             {width < 1024 && (
-                <div
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
                     onClick={handleCloseModal}
                     className="group absolute h-[5%] w-full right-0 top-0 lg:hidden"
                 >
                     <div className="h-full flex items-center justify-center">
                         <span className="text-[20px] bg-black/70 text-gray-300 transition-all duration-200 group-hover:underline hover:text-gray-100 hover:cursor-pointer xl:text-[24px] 2xl:text-[32px] "></span>
                     </div>
-                </div>
+                </motion.div>
             )}
         </ModalWrapperStyled>
     );

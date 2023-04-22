@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Wrapper from '../components/Common/Wrapper/Wrapper';
 import HeroBanner from '../components/Common/HeroBanner';
+import ProductCard from '@/components/Product/ProductCard';
+import CategoryCarousel from '@/components/Carousel/CategoryCarousel';
 
 const StyledPage = styled.div``;
 
@@ -15,7 +17,8 @@ export function Index() {
             <div className=" mx-auto">
                 <HeroBanner />
                 <StyledPage className="w-full">
-                    <Wrapper className="max-w-[1640px] bg-black">
+                    <Wrapper className="scroll-smooth max-w-[1640px] ">
+                        <CategoryCarousel></CategoryCarousel>
                         <div className=" h-[2000px]"></div>
                     </Wrapper>
                 </StyledPage>
