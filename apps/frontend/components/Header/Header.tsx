@@ -20,6 +20,7 @@ import Search from '../Search/Search';
 import EmptyProduct from '../Cart/EmptyProduct';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { EventTargetHandler } from '@/types/common/types';
+import { windowSizeActions } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -79,10 +80,10 @@ const Header = (props: Props) => {
                 </Modals>
             )}
             <div
-                className={`bg-white font-semibold  w-full h-[60px] flex justify-center items-center z-20 sticky top-0 transition-transform duration-300 linear lg:h-[80x] xl:mx-auto ${showHeader} `}
+                className={`bg-white font-semibold w-full h-[60px] flex justify-center items-center z-20 fixed top-0 transition-transform duration-300 ease-linear lg:h-[80x] xl:mx-auto ${showHeader} `}
             >
                 <div className="w-full bg-white  flex justify-center items-center fixed ">
-                    <div className=" max-w-[1800px] h-[60px]  w-[100%]  flex items-center  px-[24px] md:px-[30px] lg:px-12 xl:px-[80px] lg:mt-2 2xl:mt-3 lg:h-[80px] ">
+                    <div className=" max-w-[1800px] h-[60px]  w-[100%]  flex items-center px-[24px] md:px-[30px] lg:px-12 xl:px-[80px] lg:mt-2 2xl:mt-3 lg:h-[80px] ">
                         <div className="flex-1 lg:block hidden ">
                             <div className="w-[70%] lg:w-[90%] xl:w-[70%] 2xl:w-[60%]">
                                 <div className="w-[100%] flex justify-between items-center">

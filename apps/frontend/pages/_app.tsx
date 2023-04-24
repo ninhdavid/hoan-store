@@ -15,8 +15,8 @@ function CustomApp({ Component, ...rest }: AppProps) {
             </Head>
             <main className="app">
                 <Provider store={store}>
-                    <Header />
-                    <Component {...props.pageProps} />
+                        <Header />
+                        <Component {...props.pageProps} />
                 </Provider>
             </main>
         </>

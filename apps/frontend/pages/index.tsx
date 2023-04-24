@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import Wrapper from '../components/Common/Wrapper/Wrapper';
 import HeroBanner from '../components/Common/HeroBanner';
-import ProductCard from '@/components/Product/ProductCard';
 import CategoryCarousel from '@/components/Carousel/CategoryCarousel';
+import ScrollCard from '@/components/Common/Scroll/ScrollCard';
+import ScrollWrapper from '@/components/Common/Scroll/ScrollWrapper/ScrollWrapper';
 
 const StyledPage = styled.div``;
 
@@ -19,7 +20,9 @@ export function Index() {
                 <StyledPage className="w-full">
                     <Wrapper className="scroll-smooth max-w-[1640px] ">
                         <CategoryCarousel></CategoryCarousel>
-                        <div className=" h-[2000px]"></div>
+                        <p>them mot category</p>
+                        <ScrollWrapper ></ScrollWrapper>
+                        {/* <div className=" h-[2000px]"></div> */}
                     </Wrapper>
                 </StyledPage>
             </div>

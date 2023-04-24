@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect ,useContext} from 'react';
 import { BsDot } from 'react-icons/bs';
 import {
     motion,
@@ -12,6 +12,9 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import Link from 'next/link';
+import { WindowSizeContext } from '@/Context/WindowSizeProvider';
+import { useAppSelector } from '@/redux/store/reduxHooks';
+import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -87,14 +90,17 @@ const images = [
 
 function SlideImage(props: Props) {
     const [[page, direction], setPage] = useState([0, 0]);
-    const { width, height } = useWindowSize();
     const [windowChange, setWindowChange] = useState(0);
+    const windowSize = useWindowSize();
+    // const {width,} = useContext(WindowSizeContext)
+    // const windowSize = useAppSelector(selectSetWindowSize)
+
 
     const constraintsRef = useRef(null);
 
     useEffect(() => {
-        setWindowChange(width);
-    }, [width]);
+        setWindowChange(windowSize.width);
+    }, [windowSize.width]);
 
     const handleDragEnd = (event, info) => {
         const dragEndValue = info.offset.x;
@@ -129,7 +135,7 @@ function SlideImage(props: Props) {
             {windowChange && (
                 <>
                     <ImageSlide className="flex h-full w-full pt-5">
-                        <AnimatePresence key={width} custom={{ direction, page }} initial={false}>
+                        <AnimatePresence key={windowSize.width} custom={{ direction, page }} initial={false}>
                             <motion.div className="h-[100px] w-[100px]" ref={constraintsRef}>
                                 {images.map((image) => (
                                     <motion.div
@@ -181,7 +187,7 @@ function SlideImage(props: Props) {
                                         </div>
                                     </motion.div>
                                 ))}
-                                {width < 1024 && (
+                                {windowSize.width < 1024 && (
                                     <>
                                         <div className="z-50  absolute flex flex-row justify-around left-[75%] top-[-3%] text-gray-300 text-3xl">
                                             <BsDot
@@ -215,7 +221,7 @@ function SlideImage(props: Props) {
                             </motion.div>
                         </AnimatePresence>
 
-                        {width >= 1024 && (
+                        {windowSize.width >= 1024 && (
                             <>
                                 <div
                                     className={`next ${page === 4 ? 'opacity-30' : ''}`}

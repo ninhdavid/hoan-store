@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
     fetchModalListSuccess,
     modalActions,
@@ -8,6 +8,8 @@ import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { EventTargetHandler } from '@/types/common/types';
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import { AnimatePresence, motion } from 'framer-motion';
+import  { WindowSizeContext } from '@/Context/WindowSizeProvider';
+import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 type Props = {
     children?: React.ReactNode;
@@ -16,7 +18,10 @@ type Props = {
 const Modals = (props: Props) => {
     const isModal = useAppSelector(selectSetModal);
     const dispatch = useAppDispatch();
-    const { width, height } = useWindowSize();
+    const windowSize = useWindowSize();
+    // const {width,} = useContext(WindowSizeContext)
+    // const windowSize = useAppSelector(selectSetWindowSize)
+
 
     useEffect(() => {
         if (isModal) {
@@ -32,7 +37,7 @@ const Modals = (props: Props) => {
                 () => {
                     dispatch(modalActions.setModal(!isModal));
                 },
-                width >= 1024 ? 600 : 300
+                windowSize.width >= 1024 ? 600 : 300
             );
         }
     };

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useContext} from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { modalActions, selectSetModal } from '@/redux/ActionsReducer/MenuModal/MenuModalSlice';
@@ -8,6 +8,8 @@ import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import { ModalWrapperStyled } from '@/styles/ModalMenu';
 import { motion } from 'framer-motion';
+import  { WindowSizeContext } from '@/Context/WindowSizeProvider';
+import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -32,7 +34,10 @@ function ShopModalMenu({ ...props }: Props) {
     const [isModalClose, setIsModalClose] = useState(false);
     const isModal = useAppSelector(selectSetModal);
     const dispatch = useAppDispatch();
-    const { width, height } = useWindowSize();
+    const windowSize = useWindowSize();
+    // const windowSize = useContext(WindowSizeContext)
+    // const windowSize = useAppSelector(selectSetWindowSize)
+    
     const handleCloseModal = (e: EventTargetHandler) => {
         e.stopPropagation();
         setIsModalClose(true);
@@ -40,7 +45,7 @@ function ShopModalMenu({ ...props }: Props) {
             () => {
                 dispatch(modalActions.setModal(!isModal));
             },
-            width >= 1024 ? 600 : 300
+            windowSize.width >= 1024 ? 600 : 300
         );
     };
 
@@ -57,13 +62,13 @@ function ShopModalMenu({ ...props }: Props) {
             {isModal && (
                 <div
                     className={`h-[95%] w-[100%] absolute bottom-0 lg:h-[100%] lg:w-[42%] xl:w-[33%] 2xl:w-[28%] overflow-y-scroll lg:overflow-visible ${
-                        width < 1024 ? (!isModalClose ? 'modalPopup' : 'closeModalPopupTop') : ''
+                        windowSize.width < 1024 ? (!isModalClose ? 'modalPopup' : 'closeModalPopupTop') : ''
                     }`}
                 >
                     <div className=" relative lg:h-full bg-white lg:bg-transparent ">
                         <div className="px-6 lg:px-0 lg:h-full ">
                             <div className="h-full pt-11 pb-6 lg:pt-0 lg:pb-0 ">
-                                {width <= 1024 && (
+                                {windowSize.width <= 1024 && (
                                     <div className="lg:hidden">
                                         <div className="bg-gradient-to-r from-cyan-300 to-rose-300 h-[100px] text-center flex items-center justify-center rounded-lg lg:rounded-none lg:border-b lg:border-l lg:border-slate-400  lg:min-h-[400px] lg:h-full">
                                             <p>Original Sneaker Shoes</p>
@@ -141,7 +146,7 @@ function ShopModalMenu({ ...props }: Props) {
                                             </div>
                                         </section>
                                     </div>
-                                    {width >= 1024 && (
+                                    {windowSize.width >= 1024 && (
                                         <div
                                             className={`z-0 w-[360px] -translate-x-[540px] absolute overflow-y-scroll h-full bg-white opacity-0 ${
                                                 !isModalClose
@@ -177,7 +182,7 @@ function ShopModalMenu({ ...props }: Props) {
                     </div>
                 </div>
             )}
-            {width >= 1024 && (
+            {windowSize.width >= 1024 && (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -191,7 +196,7 @@ function ShopModalMenu({ ...props }: Props) {
                     </div>
                 </motion.div>
             )}
-            {width < 1024 && (
+            {windowSize.width < 1024 && (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}

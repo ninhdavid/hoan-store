@@ -56,20 +56,21 @@ const products = [
 ];
 function CategoryCarousel(props: Props) {
     return (
-        <div className="md:flex md:flex-row md:pt-[60px] ">
-            <div className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal">
-                <p className="text-[38px] leading-normal mb-2 font-semibold md:mb-2">Jordan 1</p>
-                <p className="mb-5 md:text-sm ">
+        <div className="md:flex md:flex-row md:pt-[80px] 2xl:pt-[100px]">
+            <div className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal 2xl:pr-[160px]">
+                <p className="text-[38px] leading-normal mb-2 font-semibold md:mb-2 2xl:text-5xl 2xl:mb-8">Jordan 1</p>
+                <p className="mb-5 md:text-sm 2xl:text-lg 2xl:mb-7">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque repellendus
                     saepe ducimus amet ipsa laboriosam nemo. Reprehenderit alias laborum, id non
                     dolorem, minima ea aperiam a amet voluptas repellat error.
                 </p>
-                <button className="text-white text-xl rounded-3xl mb-5 w-[140px] h-[50px] bg-black 2xl:text-2xl">
+                <button className="text-white text-xl rounded-3xl mb-5 w-[140px] h-[50px] bg-black 2xl:text-2xl 2xl:w-[160px]">
                     Shop Now
                 </button>
             </div>
-            <div className='w-[50%] relative'>
-                <p>image png -- background transparent
+            <div className='md:w-[50%] relative'>
+                <p>image png -- background transparent. 
+                increase height element
                 </p>
                 <SwiperWrapper className="swiper">
                     {products.map((product) => {

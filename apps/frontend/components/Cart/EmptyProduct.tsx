@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState ,useContext} from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { wrap } from 'popmotion';
@@ -6,6 +6,9 @@ import SlideImage from './SlideImage';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { EventTargetHandler } from '@/types/common/types';
 import Image from 'next/image';
+import { WindowSizeContext } from '@/Context/WindowSizeProvider';
+import { useAppSelector } from '@/redux/store/reduxHooks';
+import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
@@ -79,10 +82,11 @@ const product = [
 ];
 const EmptyProduct = (props: Props) => {
     const [unMounted, setUnMounted] = useState(true);
-    const { width, height } = useWindowSize();
-
-    const durationRuntime = width >= 1024 ? 600 : 300;
-
+    const windowSize = useWindowSize();
+// const {width,} =useContext(WindowSizeContext)
+// const windowSize =useAppSelector(selectSetWindowSize)
+    const durationRuntime = windowSize.width >= 1024 ? 600 : 300;
+    
     const handleOpenShop = (e: EventTargetHandler) => {
         e.stopPropagation();
         setUnMounted(false);
@@ -279,7 +283,7 @@ const EmptyProduct = (props: Props) => {
                     </motion.div>
                 )}
             </AnimatePresence>
-            {width >= 1024 && (
+            {windowSize.width >= 1024 && (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -295,7 +299,7 @@ const EmptyProduct = (props: Props) => {
                     </div>
                 </motion.div>
             )}
-            {width < 1024 && (
+            {windowSize.width < 1024 && (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
