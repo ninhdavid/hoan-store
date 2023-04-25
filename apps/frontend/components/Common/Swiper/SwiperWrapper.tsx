@@ -19,7 +19,6 @@ const SwiperSlideStyled = styled.div`
         padding-bottom:40px;
         margin-bottom:40px;
         min-height: 320px;
-        max-height:420px;
     }
     .swiper-slide.swiper-slide-active {
         margin-right:12px;
@@ -70,6 +69,10 @@ const SwiperSlideStyled = styled.div`
         }
     
     @media screen and (min-width: 768px){
+        .swiper {
+            margin:0 -30px;
+
+        }
         .swiper-slide{
             transform: translateX(-19%)
         }
@@ -77,6 +80,50 @@ const SwiperSlideStyled = styled.div`
             margin-right:10px;
             margin-left:10px;
         }
+    }
+    @media screen and (min-width:1024px) {
+        .swiper {
+            margin0-left:0px;
+            margin-right:-48px;
+
+            & .swiper-slide:first-child{margin-left:-72px}
+        }
+        .swiper-slide {
+
+            &  img{
+                margin-bottom:12px;
+                height:300px;
+                width:340px;
+                object-fit:fill;
+            }
+        }
+    }
+    @media screen and (min-width:1280px) {
+        .swiper {
+            margin-right:-60px;
+
+        }
+    }
+    @media screen and (min-width:1538px){       
+        .swiper{
+            margin-right:-80px;
+
+            & .swiper-slide:first-child{margin-left:60px}
+        }
+        .swiper-slide {
+
+            &  img{
+                margin-bottom:16px;
+                height:360px;
+                width:400px;
+                object-fit:fill;
+            }
+        }
+    @media screen and (min-width:1920px){
+        .swiper {
+            margin-right:-140px;
+        }
+    }
     }
 `;
 function SwiperWrapper(props: Props) {
@@ -100,14 +147,21 @@ function SwiperWrapper(props: Props) {
                         centeredSlides:true,
                     },
                     768:{
+                        spaceBetween:8,
                         slidesPerView:2,
                         centeredSlides:false,
                         navigation:{nextEl:'.swiper-button-next',
                             prevEl:'.swiper-button-prev',}
                     },
+                    1024:{
+                        spaceBetween:6,
+                        slidesPerView:2,
+
+                    },
                     1536:{
-                        slidesPerView:"auto",
-                        centeredSlides:true,
+                        spaceBetween:4,
+                        slidesPerView:2.5,
+                        centeredSlides:false,
                         navigation:{nextEl:'.swiper-button-next',
                             prevEl:'.swiper-button-prev',}
                     }

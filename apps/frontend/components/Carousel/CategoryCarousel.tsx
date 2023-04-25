@@ -6,6 +6,7 @@ import ProductCard from '../Product/ProductCard';
 /* eslint-disable-next-line */
 type Props = {
     children?: React.ReactNode;
+    className?: string;
 };
 const products = [
     {
@@ -56,8 +57,8 @@ const products = [
 ];
 function CategoryCarousel(props: Props) {
     return (
-        <div className="md:flex md:flex-row md:pt-[80px] 2xl:pt-[100px]">
-            <div className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal 2xl:pr-[160px]">
+        <div className={`md:flex md:flex-row md:pt-[80px] 2xl:pt-[100px] ${props?.className}`}>
+            <div className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal 2xl:pr-[120px]">
                 <p className="text-[38px] leading-normal mb-2 font-semibold md:mb-2 2xl:text-5xl 2xl:mb-8">Jordan 1</p>
                 <p className="mb-5 md:text-sm 2xl:text-lg 2xl:mb-7">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque repellendus
@@ -68,9 +69,8 @@ function CategoryCarousel(props: Props) {
                     Shop Now
                 </button>
             </div>
-            <div className='md:w-[50%] relative'>
-                <p>image png -- background transparent. 
-                increase height element
+            <div className='relative md:w-[50%] lg:w-[60%] 2xl:w-[60%]'>
+                <p>image png -- background transparent.
                 </p>
                 <SwiperWrapper className="swiper">
                     {products.map((product) => {

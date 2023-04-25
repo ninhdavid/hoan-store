@@ -1,26 +1,18 @@
 import { useEffect, useState } from 'react';
-import NavMobile from './NavMobile';
-
+import {motion} from 'framer-motion';
+import {
+    modalActions,
+    selectSetModal
+} from '@/redux/ActionsReducer/MenuModal/MenuModalSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import Link from 'next/link';
+import { FaRegUserCircle } from 'react-icons/fa';
 import { HiBars2 } from 'react-icons/hi2';
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
 import { VscChevronDown } from 'react-icons/vsc';
-import { FaRegUserCircle } from 'react-icons/fa';
-import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
-import {
-    fetchModalListSuccess,
-    modalActions,
-    selectModalLoading,
-    selectSetModal,
-} from '@/redux/ActionsReducer/MenuModal/MenuModalSlice';
 import styled from 'styled-components';
-import Modals from '../Modals/Modals';
-import ShopModalMenu from '../Modals/ShopModalMenu/ShopModalMenu';
-import Search from '../Search/Search';
 import EmptyProduct from '../Cart/EmptyProduct';
-import useWindowSize from '@/lib/hooks/common/useWindowSize';
-import { EventTargetHandler } from '@/types/common/types';
-import { windowSizeActions } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
+import Modals from '../Modals/Modals';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -30,37 +22,43 @@ const WrapperStyled = styled.div`
         cursor: pointer;
     }
 `;
+
+const headerVariants = {
+    initial:{},
+    animate:{}
+}
+const headerHeight = 200
+
 const Header = (props: Props) => {
     const [lastScrollY, setLastScrollY] = useState(0);
-    const [showHeader, setShowHeader] = useState('translate-y-0');
-    const [isModalClose, setIsModalClose] = useState(false);
+    const [showHeader, setShowHeader] = useState(true);
 
     const [mobileMenu, setMobileMenu] = useState(false);
 
     const dispatch = useAppDispatch();
-    const showModal = useAppSelector(fetchModalListSuccess);
     const isModal = useAppSelector(selectSetModal);
 
-    const controlNavbar = () => {
-        if (window.scrollY > 200) {
-            if (window.scrollY > lastScrollY && !mobileMenu) {
-                setShowHeader('-translate-y-[80px]');
-            } else {
-                setShowHeader('shadow-sm');
-            }
-        } else {
-            setShowHeader('translate-y-0');
-        }
-        setLastScrollY(window.scrollY);
-    };
-    useEffect(() => {
-        window.addEventListener('scroll', controlNavbar);
-        return () => {
-            window.removeEventListener('scroll', controlNavbar);
-        };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [lastScrollY]);
+    
+    const handleScroll = () => {
+        const scrollY = window.scrollY;
+        if (scrollY > headerHeight) {
+                if (scrollY > lastScrollY && !mobileMenu) {
+                        setShowHeader(false);
+                } else {
+                    setShowHeader(true);
+                }
+                setLastScrollY(scrollY);
+            };
+    }
 
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+        window.removeEventListener('scroll', handleScroll);
+        };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [lastScrollY]);
+    
     useEffect(() => {
         if (!isModal) {
             document.body.style.overflow = 'auto';
@@ -68,7 +66,7 @@ const Header = (props: Props) => {
     }, [isModal]);
 
     const handleOpenShop = () => {
-        dispatch(modalActions.setModal(!isModal)); // cần thời gian load data thì thêm 0.1>0.2 (Nếu thêm thì phải tăng tất cả các chỗ khác tương ứng)
+        dispatch(modalActions.setModal(!isModal)); //loading data thì thêm 0.1>0.2 (if increment this, another same the position will be too)
     };
     return (
         <WrapperStyled>
@@ -79,11 +77,15 @@ const Header = (props: Props) => {
                     <EmptyProduct handleOpenShop={handleOpenShop} />
                 </Modals>
             )}
-            <div
-                className={`bg-white font-semibold w-full h-[60px] flex justify-center items-center z-20 fixed top-0 transition-transform duration-300 ease-linear lg:h-[80x] xl:mx-auto ${showHeader} `}
+            <motion.header
+                initial={{ y: -80 }} 
+                animate={{ y: showHeader ? 0 : -80 }} 
+                transition={{ duration: 0.3 }}
+                className={`bg-white font-semibold w-full h-[60px] flex justify-center items-center z-20 fixed top-0  ease-linear lg:h-[80x] xl:mx-auto `}
             >
-                <div className="w-full bg-white  flex justify-center items-center fixed ">
-                    <div className=" max-w-[1800px] h-[60px]  w-[100%]  flex items-center px-[24px] md:px-[30px] lg:px-12 xl:px-[80px] lg:mt-2 2xl:mt-3 lg:h-[80px] ">
+                 {/* ${showHeader} */}
+                <div className="w-full bg-white flex justify-center items-center fixed ">
+                    <div className=" max-w-[1800px] h-[60px]  w-[100%]  flex items-center px-[24px] md:px-[30px] lg:px-12 xl:px-[60px] lg:mt-2 2xl:mt-3 lg:h-[80px] 2xl:px-[80px] ">
                         <div className="flex-1 lg:block hidden ">
                             <div className="w-[70%] lg:w-[90%] xl:w-[70%] 2xl:w-[60%]">
                                 <div className="w-[100%] flex justify-between items-center">
@@ -169,7 +171,7 @@ const Header = (props: Props) => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </motion.header>
         </WrapperStyled>
     );
 };

@@ -6,8 +6,6 @@ import SlideImage from './SlideImage';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { EventTargetHandler } from '@/types/common/types';
 import Image from 'next/image';
-import { WindowSizeContext } from '@/Context/WindowSizeProvider';
-import { useAppSelector } from '@/redux/store/reduxHooks';
 import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 // eslint-disable-next-line @typescript-eslint/ban-types

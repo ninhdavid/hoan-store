@@ -8,7 +8,7 @@ interface WrapperProps {
 
 function Wrapper({ children, className }: WrapperProps) {
     return (
-        <div className={`w-full max-w-[1800px] px-6 md:px-[30px] lg:px-[60px] xl:px-[80px] mx-auto ${className || ''} `}>
+        <div className={`w-full max-w-[1800px] px-6 md:px-[30px] lg:px-[48px] xl:px-[60px] 2xl:px-[80px] mx-auto ${className || ''} `}>
             {children}
         </div>
     );

@@ -20,7 +20,7 @@ to{
 const TextAnimate = styled.div<{ direction?: string ,isIntersected?:boolean}>`
     will-change: transform;
     position: relative;
-    transform: translateX(${(props) => (props.direction === 'forward' ? '70vw' : '30vw')});
+    transform: translateX(${(props) => (props.direction === 'forward' ? '65vw' : '35vw')});
 
     & > p {
         transform: translateX(${(props) => (props.direction === 'forward' ? '-200%' : '200%')})

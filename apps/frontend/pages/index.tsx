@@ -20,9 +20,10 @@ export function Index() {
                 <StyledPage className="w-full">
                     <Wrapper className="scroll-smooth max-w-[1640px] ">
                         <CategoryCarousel></CategoryCarousel>
+                        <CategoryCarousel className='lg:-mt-5 lg:mb-[3vh] 2xl:-mt-20 2xl:mb-[4vh]'></CategoryCarousel>
                         <p>them mot category</p>
                         <ScrollWrapper ></ScrollWrapper>
-                        {/* <div className=" h-[2000px]"></div> */}
+                        <div className=" h-[2000px]"></div>
                     </Wrapper>
                 </StyledPage>
             </div>
