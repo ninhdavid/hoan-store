@@ -121,7 +121,7 @@ const SwiperSlideStyled = styled.div`
         }
     @media screen and (min-width:1920px){
         .swiper {
-            margin-right:-140px;
+            margin-right:-130px;
         }
     }
     }

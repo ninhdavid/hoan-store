@@ -4,8 +4,13 @@ import HeroBanner from '../components/Common/HeroBanner';
 import CategoryCarousel from '@/components/Carousel/CategoryCarousel';
 import ScrollCard from '@/components/Common/Scroll/ScrollCard';
 import ScrollWrapper from '@/components/Common/Scroll/ScrollWrapper/ScrollWrapper';
+import ScrollImageFullWidth from '@/components/Common/Scroll/ScrollScaleImgPhase2/ScrollImageFullWidth';
+import ScrollWrapperPhase2 from '@/components/Common/Scroll/ScrollWrapper/ScrollWrapperPhase2';
+import ScrollProvider from '@/Context/ScrollProvider';
 
-const StyledPage = styled.div``;
+const StyledPage = styled.div`
+    z-index: 0;
+`;
 
 export function Index() {
     /*
@@ -20,10 +25,11 @@ export function Index() {
                 <StyledPage className="w-full">
                     <Wrapper className="scroll-smooth max-w-[1640px] ">
                         <CategoryCarousel></CategoryCarousel>
-                        <CategoryCarousel className='lg:-mt-5 lg:mb-[3vh] 2xl:-mt-20 2xl:mb-[4vh]'></CategoryCarousel>
-                        <p>them mot category</p>
-                        <ScrollWrapper ></ScrollWrapper>
-                        <div className=" h-[2000px]"></div>
+                        <CategoryCarousel className="lg:-mt-5 lg:mb-[3vh] 2xl:-mt-20 2xl:mb-[4vh]"></CategoryCarousel>
+                        <ScrollProvider>
+                            <ScrollWrapper></ScrollWrapper>
+                            <ScrollWrapperPhase2></ScrollWrapperPhase2>
+                        </ScrollProvider>
                     </Wrapper>
                 </StyledPage>
             </div>

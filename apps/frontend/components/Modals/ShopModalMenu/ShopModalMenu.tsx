@@ -1,4 +1,4 @@
-import React, { useState,useContext} from 'react';
+import React, { useState, useContext } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import { modalActions, selectSetModal } from '@/redux/ActionsReducer/MenuModal/MenuModalSlice';
@@ -7,8 +7,7 @@ import { EventTargetHandler } from '@/types/common/types';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import { ModalWrapperStyled } from '@/styles/ModalMenu';
-import { motion } from 'framer-motion';
-import  { WindowSizeContext } from '@/Context/WindowSizeProvider';
+import { motion, useCycle } from 'framer-motion';
 import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -29,7 +28,34 @@ const CustomersNavigation = [
     { id: 5, name: 'Help Center', url: '/' },
     { id: 6, name: 'Refer a Friend', url: '/' },
 ];
+const navVariants = {
+    open: {
+        transition: { staggerChildren: 0.07, delayChildren: 0.2 }
+    },
+    closed: {
+        transition: { staggerChildren: 0.05, staggerDirection: -1 }
+    }
+}
+const menuItemVariants = {
+    open: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            // duration: 0.4,
 
+            y: { stiffness: 1000, velocity: -100 }
+        }
+    },
+    closed: {
+        y: 50,
+        opacity: 0,
+        transition: {
+            // duration: 0.4,
+
+            y: { stiffness: 1000 }
+        }
+    }
+};
 function ShopModalMenu({ ...props }: Props) {
     const [isModalClose, setIsModalClose] = useState(false);
     const isModal = useAppSelector(selectSetModal);
@@ -37,33 +63,36 @@ function ShopModalMenu({ ...props }: Props) {
     const windowSize = useWindowSize();
     // const windowSize = useContext(WindowSizeContext)
     // const windowSize = useAppSelector(selectSetWindowSize)
-    
+    const [isOpen, toggleOpen] = useCycle(false, true);
+    React.useEffect(()=>{if(isModal){
+        toggleOpen()
+    }},[])
     const handleCloseModal = (e: EventTargetHandler) => {
         e.stopPropagation();
         setIsModalClose(true);
+        toggleOpen()
         setTimeout(
             () => {
                 dispatch(modalActions.setModal(!isModal));
             },
             windowSize.width >= 1024 ? 600 : 300
         );
+
     };
 
     return (
         <ModalWrapperStyled>
             <span
                 onClick={handleCloseModal}
-                className={`absolute flex items-center justify-center -top-[60px] right-[85%] w-10 h-10  text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:bg-gray-100 hover:cursor-pointer focus:bg-white sm:right-[90%]  md:right-[92%] lg:invisible ${
-                    !isModalClose ? 'buttonPopup' : 'willHiddenButtonPopup'
-                }`}
+                className={`absolute flex items-center justify-center -top-[60px] right-[85%] w-10 h-10  text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:bg-gray-100 hover:cursor-pointer focus:bg-white sm:right-[90%]  md:right-[92%] lg:invisible ${!isModalClose ? 'buttonPopup' : 'willHiddenButtonPopup'
+                    }`}
             >
                 <HiXMark />
             </span>
             {isModal && (
                 <div
-                    className={`h-[95%] w-[100%] absolute bottom-0 lg:h-[100%] lg:w-[42%] xl:w-[33%] 2xl:w-[28%] overflow-y-scroll lg:overflow-visible ${
-                        windowSize.width < 1024 ? (!isModalClose ? 'modalPopup' : 'closeModalPopupTop') : ''
-                    }`}
+                    className={`h-[95%] w-[100%] absolute bottom-0 lg:h-[100%] lg:w-[42%] xl:w-[33%] 2xl:w-[28%] overflow-y-scroll lg:overflow-visible ${windowSize.width < 1024 ? (!isModalClose ? 'modalPopup' : 'closeModalPopupTop') : ''
+                        }`}
                 >
                     <div className=" relative lg:h-full bg-white lg:bg-transparent ">
                         <div className="px-6 lg:px-0 lg:h-full ">
@@ -78,24 +107,33 @@ function ShopModalMenu({ ...props }: Props) {
                                 )}
                                 <div className="relative flex flex-row justify-end h-full w-full 2xl:max-w-[712px]  ">
                                     <div
-                                        className={`z-10 bg-white flex-1 -translate-x-[100%] ${
-                                            !isModalClose ? 'modalPopup' : 'closeModalPopup'
-                                        }
+                                        className={`z-10 bg-white flex-1 -translate-x-[100%] ${!isModalClose ? 'modalPopup' : 'closeModalPopup'
+                                            }
                                         `}
                                     >
-                                        <div className=" bg-white lg:pt-[140px] lg:px-16 lg:ml-1">
+                                        <motion.nav initial={false} animate={isOpen ? "open" : "closed"} className=" bg-white lg:pt-[140px] lg:px-16 lg:ml-1">
                                             <span
                                                 onClick={handleCloseModal}
                                                 className="invisible absolute items-center justify-center top-[60px] right-[75%] w-10 h-10 text-xl text-gray-800 bg-white rounded-full z-40 border drop-shadow-lg transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:shadow-lg focus:bg-white lg:visible lg:flex xl:right-[73%] 2xl:right-[84%]"
                                             >
                                                 <HiXMark />
                                             </span>
-                                            <ul>
-                                                {ProductNavigation.map((item) => {
+                                            <motion.ul variants={navVariants}
+                                            // initial='closed'
+                                            // animate="open" 
+                                            // exit='closed'
+                                            >
+                                                {ProductNavigation?.map((item) => {
                                                     return (
-                                                        <li
+                                                        <motion.li
                                                             key={item.id}
-                                                            className="px-[30px] py-[15px] mt-[10px] bg-gray-100/40 rounded-lg transition duration-200  hover:cursor-pointer hover:bg-gray-100"
+                                                            variants={menuItemVariants}
+                                                            whileHover={{ scale: 1.1 }}
+                                                            whileTap={{ scale: 0.95 }}
+                                                            // initial='closed'
+                                                            // animate="open"
+                                                            // exit='closed'
+                                                            className="px-[30px] py-[15px] mt-[10px] bg-gray-100/40 rounded-lg  hover:cursor-pointer hover:bg-gray-100"
                                                         >
                                                             <Link
                                                                 href={item?.url}
@@ -108,10 +146,10 @@ function ShopModalMenu({ ...props }: Props) {
                                                                     NEED IMAGE
                                                                 </p>
                                                             </Link>
-                                                        </li>
+                                                        </motion.li>
                                                     );
                                                 })}
-                                            </ul>
+                                            </motion.ul>
                                             <ul className="lg:hidden">
                                                 {CustomersNavigation.map((item) => {
                                                     return (
@@ -126,7 +164,7 @@ function ShopModalMenu({ ...props }: Props) {
                                                     );
                                                 })}
                                             </ul>
-                                        </div>
+                                        </motion.nav>
                                         <section className="absolute bottom-0 right-0 left-0">
                                             <div className="flex justify-center items-center mt-1 mb-4 lg:bottom-8">
                                                 <a
@@ -148,11 +186,10 @@ function ShopModalMenu({ ...props }: Props) {
                                     </div>
                                     {windowSize.width >= 1024 && (
                                         <div
-                                            className={`z-0 w-[360px] -translate-x-[540px] absolute overflow-y-scroll h-full bg-white opacity-0 ${
-                                                !isModalClose
+                                            className={`z-0 w-[360px] -translate-x-[540px] absolute overflow-y-scroll h-full bg-white opacity-0 ${!isModalClose
                                                     ? 'subModalPopup '
                                                     : 'closeSubModalPopup'
-                                            }`}
+                                                }`}
                                         >
                                             <div className="h-full">
                                                 <div className=" absolute h-full grid lg:grid-row">

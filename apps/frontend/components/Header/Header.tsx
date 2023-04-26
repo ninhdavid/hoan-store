@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import {motion} from 'framer-motion';
+import {motion, useCycle} from 'framer-motion';
 import {
     modalActions,
     selectSetModal
@@ -13,6 +13,7 @@ import { VscChevronDown } from 'react-icons/vsc';
 import styled from 'styled-components';
 import EmptyProduct from '../Cart/EmptyProduct';
 import Modals from '../Modals/Modals';
+import ShopModalMenu from '../Modals/ShopModalMenu/ShopModalMenu';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -37,6 +38,8 @@ const Header = (props: Props) => {
 
     const dispatch = useAppDispatch();
     const isModal = useAppSelector(selectSetModal);
+    const [isOpen, toggleOpen] = useCycle(false, true);
+
 
     
     const handleScroll = () => {
@@ -72,9 +75,9 @@ const Header = (props: Props) => {
         <WrapperStyled>
             {isModal && (
                 <Modals>
-                    {/* <ShopModalMenu /> */}
+                    <ShopModalMenu />
                     {/* <Search /> */}
-                    <EmptyProduct handleOpenShop={handleOpenShop} />
+                    {/* <EmptyProduct handleOpenShop={handleOpenShop} /> */}
                 </Modals>
             )}
             <motion.header
