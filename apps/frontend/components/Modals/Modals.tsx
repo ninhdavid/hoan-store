@@ -8,7 +8,6 @@ import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { EventTargetHandler } from '@/types/common/types';
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import { AnimatePresence, motion } from 'framer-motion';
-import  { WindowSizeContext } from '@/Context/WindowSizeProvider';
 import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 
 type Props = {
@@ -21,8 +20,7 @@ const Modals = (props: Props) => {
     const windowSize = useWindowSize();
     // const {width,} = useContext(WindowSizeContext)
     // const windowSize = useAppSelector(selectSetWindowSize)
-
-
+    
     useEffect(() => {
         if (isModal) {
             document.body.style.overflow = 'hidden';
@@ -51,7 +49,8 @@ const Modals = (props: Props) => {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{
-                            delay: 0.1,
+                            opacity:{duration:0.2},
+                            // delay: 0.1,
                         }}
                         className="fixed top-0 left-0 right-0 bottom-0 z-50  "
                     >

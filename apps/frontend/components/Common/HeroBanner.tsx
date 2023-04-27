@@ -4,16 +4,11 @@ import banner from '../../public/banner.jpg';
 import Marquee from './Marquee';
 import styled from 'styled-components';
 import useOnScreen from '@/lib/hooks/common/useOnScreen';
+import { SpanText } from '@/styles/LandingPage/Header/Hero/SpanTextStyled';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
 
-const SpanText = styled.span`
-    text-shadow: none;
-    -webkit-text-stroke-color: #000;
-    -webkit-text-stroke-width: 1px;
-}
-`;
 const texts = [
     { id: 1, first: 'A ', second: 'Reusable ', third: 'May of Living . ' },
     { id: 2, first: 'A ', second: 'Reusable ', third: 'May of Living . ' },

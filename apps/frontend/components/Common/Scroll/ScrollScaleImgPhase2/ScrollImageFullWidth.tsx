@@ -16,14 +16,14 @@ type Props = {
 
 const ImageVariants = {
     initial: { opacity: 0,  },
-    animate: { opacity: 1, transition:{opacity:{duration:0.3},width:{duration:0.1}}  },
+    animate: { opacity: 1, transition:{opacity:{duration:0.3},width:{duration:0.2}}  },
     exit: { opacity: 0,   },
 };
 
 function ScrollImageFullWidth(props: Props) {
     const { lastCardOutView } = React.useContext(ScrollContext);
     const customStyle = {
-        transition:'all linear',
+        transition:'all 0.3s linear',
         ...props.style
     }
     return (
@@ -33,9 +33,9 @@ function ScrollImageFullWidth(props: Props) {
                     
                     variants={ImageVariants}
                     initial='initial'
-                    animate="animate"
+                    animate={{opacity:1,transition:{opacity:{duration:0.3}}}}
                     exit="exit"
-                    className="z-10  mx-auto my-auto sticky top-0 "
+                    className="z-20  mx-auto my-auto sticky top-0 "
                     style={customStyle}
                 >
                     <Image

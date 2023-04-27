@@ -7,6 +7,7 @@ import ScrollWrapper from '@/components/Common/Scroll/ScrollWrapper/ScrollWrappe
 import ScrollImageFullWidth from '@/components/Common/Scroll/ScrollScaleImgPhase2/ScrollImageFullWidth';
 import ScrollWrapperPhase2 from '@/components/Common/Scroll/ScrollWrapper/ScrollWrapperPhase2';
 import ScrollProvider from '@/Context/ScrollProvider';
+import CollectionWrapper from '@/components/Common/Collection/CollectionWrapper';
 
 const StyledPage = styled.div`
     z-index: 0;
@@ -23,13 +24,14 @@ export function Index() {
             <div className=" mx-auto">
                 <HeroBanner />
                 <StyledPage className="w-full">
-                    <Wrapper className="scroll-smooth max-w-[1640px] ">
+                    <Wrapper className="scroll-smooth">
                         <CategoryCarousel></CategoryCarousel>
-                        <CategoryCarousel className="lg:-mt-5 lg:mb-[3vh] 2xl:-mt-20 2xl:mb-[4vh]"></CategoryCarousel>
+                        <CategoryCarousel spanText className="lg:-mt-5 lg:mb-[3vh] 2xl:-mt-20 2xl:mb-[4vh]"></CategoryCarousel>
                         <ScrollProvider>
                             <ScrollWrapper></ScrollWrapper>
                             <ScrollWrapperPhase2></ScrollWrapperPhase2>
                         </ScrollProvider>
+                        <CollectionWrapper></CollectionWrapper>
                     </Wrapper>
                 </StyledPage>
             </div>

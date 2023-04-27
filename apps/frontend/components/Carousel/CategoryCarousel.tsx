@@ -2,11 +2,13 @@ import React from 'react';
 import SwiperWrapper from '../Common/Swiper/SwiperWrapper';
 import { SwiperSlide } from 'swiper/react';
 import ProductCard from '../Product/ProductCard';
+import { SpanText } from '@/styles/LandingPage/Header/Hero/SpanTextStyled';
 
 /* eslint-disable-next-line */
 type Props = {
     children?: React.ReactNode;
     className?: string;
+    spanText?:boolean
 };
 const products = [
     {
@@ -57,9 +59,11 @@ const products = [
 ];
 function CategoryCarousel(props: Props) {
     return (
-        <div className={`md:flex md:flex-row md:pt-[80px] 2xl:pt-[100px] ${props?.className}`}>
-            <div className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal 2xl:pr-[120px]">
-                <p className="text-[38px] leading-normal mb-2 font-semibold md:mb-2 2xl:text-5xl 2xl:mb-8">Jordan 1</p>
+        <div className={`md:flex md:flex-row xl:justify-between md:pt-[80px] 2xl:pt-[100px] ${props?.className}`}>
+            <div className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal xl:mt-20 xl:flex-none xl:w-[35%] 2xl:pr-[120px]">
+                <p className="text-[38px] leading-normal mb-2 font-semibold md:mb-2 2xl:text-5xl 2xl:mb-8">
+                    {props.spanText ? <SpanText className="text-transparent">Jordan 1</SpanText> : 'Jordan 1'}
+                    </p>
                 <p className="mb-5 md:text-sm 2xl:text-lg 2xl:mb-7">
                     Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque repellendus
                     saepe ducimus amet ipsa laboriosam nemo. Reprehenderit alias laborum, id non

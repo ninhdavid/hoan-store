@@ -115,12 +115,13 @@ const EmptyProduct = (props: Props) => {
                         <div className="bg-white h-full w-[88%] lg:w-[68%] xl:w-[55%] 2xl:w-[40%] z-10 ">
                             <div className="px-[30px] pt-[30px] pb-[20px] h-full 2xl:px-20 2xl:pt-14 2xl:pb-6">
                                 <div className="relative flex justify-between items-center flex-row-reverse">
-                                    <span
+                                    <motion.span
+                                    whileTap={{ scale: 0.95,opacity:0.5 }}
                                         onClick={handleOpenShop}
                                         className={`flex items-center justify-center w-10 h-10 -translate-y-2 text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:bg-gray-100 hover:cursor-pointer hover:-translate-y-1 focus:bg-white  `}
                                     >
                                         <HiXMark />
-                                    </span>
+                                    </motion.span>
                                     <p className="text-sm ">0 Items</p>
                                 </div>
                                 <div className="py-10 h-full">

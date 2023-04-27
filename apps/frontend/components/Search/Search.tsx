@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React from 'react';
 import { HiXMark } from 'react-icons/hi2';
+import {motion} from 'framer-motion'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -10,11 +11,12 @@ const Search = (props: Props) => {
         <div>
             <div className="bg-white w-full h-[300px] px-6">
                 <div className="relative flex items-center justify-end w-full ">
-                    <span
+                    <motion.span
+                    whileTap={{ scale: 0.95,opacity:0.5 }}
                         className={`absolute flex items-center justify-center top-6  w-10 h-10  text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:-translate-y-1 hover:bg-gray-100 hover:cursor-pointer focus:bg-white   `}
                     >
                         <HiXMark />
-                    </span>
+                    </motion.span>
                 </div>
                 <section className="flex flex-col justify-end h-full pb-10">
                     <div className="text-2xl">

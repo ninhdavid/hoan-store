@@ -12,7 +12,14 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateRows: {
+        '11': 'repeat(11, minmax(0, 1fr))',
+      },
+      gridRowStart: {
+        '8': '8',
+      },
+    },
   },
   plugins: [],
 }

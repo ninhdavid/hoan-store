@@ -4,6 +4,7 @@ import '../styles/styles.css';
 import Header from '../components/Header/Header';
 import { reduxWrapper } from '@/redux/store/store';
 import { Provider } from 'react-redux';
+import Footer from '@/components/Footer/Footer';
 
 function CustomApp({ Component, ...rest }: AppProps) {
     const { store, props } = reduxWrapper.useWrappedStore(rest);
@@ -17,6 +18,7 @@ function CustomApp({ Component, ...rest }: AppProps) {
                 <Provider store={store}>
                         <Header />
                         <Component {...props.pageProps} />
+                        <Footer />
                 </Provider>
             </main>
         </>

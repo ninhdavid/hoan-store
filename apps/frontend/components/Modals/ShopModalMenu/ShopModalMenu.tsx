@@ -79,16 +79,22 @@ function ShopModalMenu({ ...props }: Props) {
         );
 
     };
-
+    const handleDelayCloseModal = (e) => {
+        setTimeout(() => {
+          handleCloseModal(e);
+        }, 300);
+      };
+      
     return (
         <ModalWrapperStyled>
-            <span
-                onClick={handleCloseModal}
+            <motion.span
+                whileTap={{ scale: 0.95,opacity:0.5 }}
+                onClick={handleDelayCloseModal}
                 className={`absolute flex items-center justify-center -top-[60px] right-[85%] w-10 h-10  text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:bg-gray-100 hover:cursor-pointer focus:bg-white sm:right-[90%]  md:right-[92%] lg:invisible ${!isModalClose ? 'buttonPopup' : 'willHiddenButtonPopup'
                     }`}
             >
                 <HiXMark />
-            </span>
+            </motion.span>
             {isModal && (
                 <div
                     className={`h-[95%] w-[100%] absolute bottom-0 lg:h-[100%] lg:w-[42%] xl:w-[33%] 2xl:w-[28%] overflow-y-scroll lg:overflow-visible ${windowSize.width < 1024 ? (!isModalClose ? 'modalPopup' : 'closeModalPopupTop') : ''
@@ -112,12 +118,13 @@ function ShopModalMenu({ ...props }: Props) {
                                         `}
                                     >
                                         <motion.nav initial={false} animate={isOpen ? "open" : "closed"} className=" bg-white lg:pt-[140px] lg:px-16 lg:ml-1">
-                                            <span
-                                                onClick={handleCloseModal}
+                                        <motion.span
+                                                whileTap={{ scale: 0.95,opacity:0.5 }}
+                                                onClick={handleDelayCloseModal}
                                                 className="invisible absolute items-center justify-center top-[60px] right-[75%] w-10 h-10 text-xl text-gray-800 bg-white rounded-full z-40 border drop-shadow-lg transition-all duration-200 hover:cursor-pointer hover:-translate-y-1 hover:shadow-lg focus:bg-white lg:visible lg:flex xl:right-[73%] 2xl:right-[84%]"
                                             >
                                                 <HiXMark />
-                                            </span>
+                                            </motion.span>
                                             <motion.ul variants={navVariants}
                                             // initial='closed'
                                             // animate="open" 
@@ -184,7 +191,7 @@ function ShopModalMenu({ ...props }: Props) {
                                             </div>
                                         </section>
                                     </div>
-                                    {windowSize.width >= 1024 && (
+                                    {windowSize.width >= 1024  && (
                                         <div
                                             className={`z-0 w-[360px] -translate-x-[540px] absolute overflow-y-scroll h-full bg-white opacity-0 ${!isModalClose
                                                     ? 'subModalPopup '
@@ -223,7 +230,7 @@ function ShopModalMenu({ ...props }: Props) {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    onClick={handleCloseModal}
+                    onClick={handleDelayCloseModal}
                     className="group absolute invisible h-full w-[23%] right-0 top-0 lg:visible xl:w-[37%] 2xl:w-[55%]"
                 >
                     <div className="h-full flex items-center justify-center">
@@ -237,7 +244,7 @@ function ShopModalMenu({ ...props }: Props) {
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    onClick={handleCloseModal}
+                    onClick={handleDelayCloseModal}
                     className="group absolute h-[5%] w-full right-0 top-0 lg:hidden"
                 >
                     <div className="h-full flex items-center justify-center">

@@ -31,25 +31,33 @@ function ScrollWrapper(props: Props) {
     const { lastCardInView } = React.useContext(ScrollContext);
 
     if (lastCardInView) {
-        setTimeout(() => setNewStateLastCard(true), 1000)
+        setTimeout(() => setNewStateLastCard(true), 500)
     } else {
-        setTimeout(() => setNewStateLastCard(false), 1000)
+        setTimeout(() => setNewStateLastCard(false), 100)
     }
     const scrollContainerRef = useRef();
     const { scrollYProgress } = useScroll({
         target: scrollContainerRef,
         offset: ['start end', 'end start'],
     });
-    const translateX1440 = windowWidthSize >= 1440 ? 'translate-x-[-60px]' : ''
+
+    const translateX1440 = windowWidthSize >= 1440 ? 'translate-x-[-100px]' : ''
+    const translateX1920 = windowWidthSize > 1440 ? 'translate-x-[10px]' : translateX1440
 
     
     return (
         <main className=''>
-            <section className="h-[5200px] overflow-clip -mx-6 md:-mx-[30px] lg:-mx-[48px] xl:-mx-[60px] 2xl:-mx-[120px]">
+            <section className="h-[5200px] overflow-clip -mx-6 md:-mx-[30px] lg:-mx-[48px] xl:-mx-[60px] 2xl:-mx-[130px]">
                 <div className="h-full mt-[3vh] flex flex-col lg:relative lg:flex-row lg:justify-between">
-                   <div className='lg:w-[35%] 2xl:w-[40%] '>
+                   <motion.div
+                    whileInView={{
+                        opacity:1,y:0
+                    }}
+                    initial={{opacity:0,y:200}}
+                    transition={{duration:0.3}}
+                    className='lg:w-[35%] 2xl:w-[40%] lg:ml-[18px] 2xl:ml-[140px] '>
                         <AnimatePresence initial={false}>
-                            {!lastCardInView && <motion.div
+                            {!newStateLastCard && <motion.div
                                 variants={textContentVariants}
                                 initial='initial'
                                 animate='animate'
@@ -80,11 +88,11 @@ function ScrollWrapper(props: Props) {
                             </motion.div>}
                         </AnimatePresence>
                        {lastCardInView &&  <div ></div>}
-                   </div>
+                   </motion.div>
                     {/* Scroll card start*/}
                     <section
                         ref={scrollContainerRef}
-                        className={`max-w-[100vw] overflow-clip ${translateX1440} 2xl:translate-x-[30px]   flex flex-col justify-center  lg:overflow-visible lg:justify-normal  md:mt-[20vh] lg:w-[60%] lg:mt-[40vh] xl:mt-[45vh] 2xl:w-[55%] 2xl:mt-[50vh] will-change-transform `}
+                        className={`max-w-[100vw] overflow-clip ${translateX1920}  flex flex-col justify-center  lg:overflow-visible lg:justify-normal  md:mt-[20vh] lg:w-[60%] lg:mt-[40vh] xl:mt-[45vh] 2xl:w-[48%] 2xl:mt-[50vh] will-change-transform `}
                     >
                         {' '}
                         <ScrollCard

@@ -39,8 +39,8 @@ const Header = (props: Props) => {
     const dispatch = useAppDispatch();
     const isModal = useAppSelector(selectSetModal);
     const [isOpen, toggleOpen] = useCycle(false, true);
-
-
+    
+    
     
     const handleScroll = () => {
         const scrollY = window.scrollY;
@@ -152,17 +152,20 @@ const Header = (props: Props) => {
                                                     REFER A FRIEND
                                                 </span>
                                             </div>
-                                            <div className="hidden group/item overflow-hidden max-w-[] text-2xl mr-5 text-gray-800 border border-slate-300 transition ease-in-out duration-500 rounded-full hover:bg-slate-100 md:-mr-2 lg:block 2xl:text-3xl is-search ">
+                                            <motion.div
+                                                transition={{duration:1}}
+
+                                                className="hidden group/item overflow-hidden max-w-[] text-2xl mr-5 text-gray-800 border border-slate-300 transition ease-in-out duration-500 rounded-full hover:bg-slate-100 md:-mr-2 lg:block 2xl:text-3xl is-search ">
                                                 <label className="relative flex items-center justify-between py-1 transition-all ease-in-out duration-500 hover:cursor-pointer">
                                                     <span className="sr-only">Search</span>
                                                     <span className="px-1 inset-y-0 flex items-center ">
                                                         <IoSearchOutline className="py-1" />
                                                     </span>
-                                                    <span className="hidden opacity-0 py-1 px-2 text-center bg-transparent  shadow-sm transition-all ease-in-out duration-500 text-sm group-hover/item:opacity-100 group-hover/item:block ">
+                                                    <motion.span transition={{duration:1}} className="hidden opacity-0 py-1 px-2 text-center bg-transparent  shadow-sm transition-all ease-in-out duration-500 text-sm group-hover/item:opacity-100 group-hover/item:block ">
                                                         Search
-                                                    </span>
+                                                    </motion.span>
                                                 </label>
-                                            </div>
+                                            </motion.div>
                                             <div className="flex flex-1 items-center justify-between md:max-w-[120px] lg:flex-0 lg:max-w-[86px] lg:pl-2 xl:pl-1 xl:max-w-[86px] 2xl:max-w-[100px]">
                                                 <IoCartOutline className="text-2xl mr-4 text-gray-800 hover:cursor-pointer lg:-mr-2 2xl:text-3xl" />
                                                 <FaRegUserCircle className="text-2xl  text-gray-800  hover:cursor-pointer  md:-mr-0 2xl:text-3xl" />

@@ -22,12 +22,14 @@ const ScrollScaleCardPhase2 = (props: Props) => {
     
     const scaleXOutputWidth400 = windowWidthSize >= 540 ?['-100vw', '100vw'] :['35vw', '100vw']
     const scaleXOutputWidth768 = windowWidthSize > 768 ?['-90vw', '100vw'] :scaleXOutputWidth400
-    const scaleXOutputWidth1440 = windowWidthSize > 1024 ?['-150vw', '100vw'] :scaleXOutputWidth768
-    const scaleXOutputWidth1920= windowWidthSize>=1920 ? ['-110vw', '100vw'] : scaleXOutputWidth1440
+    const scaleXOutputWidth1024 = windowWidthSize >= 1024 ?['-190vw', '100vw'] :scaleXOutputWidth768
+    const scaleXOutputWidth1440 = windowWidthSize >= 1440 ?['-150vw', '100vw'] :scaleXOutputWidth1024
+    const scaleXOutputWidth1920= windowWidthSize>=1920 ? ['-105vw', '100vw'] : scaleXOutputWidth1440
 
     const scaleYOutputWidth400 = windowWidthSize >=540  ?['-75vh', '100vh'] :['-50vh', '100vh']
     const scaleYOutputWidth768 = windowWidthSize > 768 ?['-70vh', '100vh'] :scaleYOutputWidth400
-    const scaleYOutputWidth1440 = windowWidthSize > 1024 ?['-120vh', '100vh'] :scaleYOutputWidth768
+    const scaleYOutputWidth1024 = windowWidthSize >= 1024 ?['-210vh', '100vh'] :scaleYOutputWidth768
+    const scaleYOutputWidth1440 = windowWidthSize >= 1440 ?['-120vh', '100vh'] :scaleYOutputWidth1024
     const scaleYOutputWidth1920= windowWidthSize>=1920 ? ['-40vh', '100vh'] : scaleYOutputWidth1440
 
     const scaleX = useTransform(scrollYProgress, [0, 1], scaleXOutputWidth1920); //last card width phase 
@@ -36,17 +38,17 @@ const ScrollScaleCardPhase2 = (props: Props) => {
     // const translateX4xx = useTransform(scrollYProgress, [0, 1], [0, 0]);
     // const translateX768 = useTransform(scrollYProgress, [0, 1], [50, 50]);
     // const translateX1024 = useTransform(scrollYProgress, [0, 1], [80, 80]);
-    const translateX1440 = useTransform(scrollYProgress, [0, 1], [0, 0]);
+    // const translateX1440 = useTransform(scrollYProgress, [0, 1], [0, 0]);
 
     // const translateXMobile = windowWidthSize >1024 ? translateX768: translateX4xx
     // const translateXSmall =  windowWidthSize >1024 ? translateX1024: translateXMobile
-    const translateX =  windowWidthSize >=1440 ? translateX1440:   null
-    const translateXConditional = windowWidthSize < 1920   ? translateX : null ;
+    // const translateX =  windowWidthSize >=1440 ? translateX1440:   null
+    // const translateXConditional = windowWidthSize < 1920   ? translateX : null ;
 
     const style={
         width:scaleX,
         height:scaleY,
-        x: translateXConditional,
+        // x: translateXConditional,
     }
     return (
         <section 
