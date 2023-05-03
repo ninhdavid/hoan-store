@@ -140,7 +140,7 @@ function ShopModalMenu({ ...props }: Props) {
                                                             // initial='closed'
                                                             // animate="open"
                                                             // exit='closed'
-                                                            className="px-[30px] py-[15px] mt-[10px] bg-gray-100/40 rounded-lg  hover:cursor-pointer hover:bg-gray-100"
+                                                            className="px-[30px] py-[15px] mt-[10px] bg-gray-100/60 rounded-lg  hover:cursor-pointer hover:bg-gray-100"
                                                         >
                                                             <Link
                                                                 href={item?.url}

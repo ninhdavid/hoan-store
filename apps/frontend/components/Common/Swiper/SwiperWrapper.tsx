@@ -121,7 +121,13 @@ const SwiperSlideStyled = styled.div`
         }
     @media screen and (min-width:1920px){
         .swiper {
-            margin-right:-130px;
+            margin-right:-140px;
+        }
+        .swiper-button-next {
+            transform: translateX(120px)
+        }
+        .swiper-button-prev {
+            transform: translateX(-60px)
         }
     }
     }

@@ -11,9 +11,11 @@ import { HiBars2 } from 'react-icons/hi2';
 import { IoCartOutline, IoSearchOutline } from 'react-icons/io5';
 import { VscChevronDown } from 'react-icons/vsc';
 import styled from 'styled-components';
-import EmptyProduct from '../Cart/EmptyProduct';
+import EmptyProductCart from '../Cart/EmptyProductCart';
 import Modals from '../Modals/Modals';
 import ShopModalMenu from '../Modals/ShopModalMenu/ShopModalMenu';
+import Search from '@/components/Search/Search'
+import { NavHoverStyled } from '@/styles/LandingPage/Footer/FooterStyled';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
@@ -38,7 +40,7 @@ const Header = (props: Props) => {
 
     const dispatch = useAppDispatch();
     const isModal = useAppSelector(selectSetModal);
-    const [isOpen, toggleOpen] = useCycle(false, true);
+    const [modalType, setModalType] = useState("");
     
     
     
@@ -68,16 +70,34 @@ const Header = (props: Props) => {
         }
     }, [isModal]);
 
-    const handleOpenShop = () => {
-        dispatch(modalActions.setModal(!isModal)); //loading data thì thêm 0.1>0.2 (if increment this, another same the position will be too)
+    const handleOpenShop = (type) => {
+        setModalType(type)
+        dispatch(modalActions.setModal(!isModal)); //loading data thì thêm 0.1>0.2 (if increment this, another same position will be too)
     };
+
+    let modalContent;
+    switch (modalType){
+
+        case "shopModalMenu" :
+            modalContent = <ShopModalMenu />
+            break;
+        case "searchModal":
+            modalContent = <Search handleOpenShop={handleOpenShop} />
+            break;
+        case "emptyProductCart":
+            modalContent = <EmptyProductCart handleOpenShop={handleOpenShop} />
+            break;
+
+            default: modalContent=null;
+    }
     return (
         <WrapperStyled>
             {isModal && (
                 <Modals>
-                    <ShopModalMenu />
+                    {/* <ShopModalMenu /> */}
                     {/* <Search /> */}
-                    {/* <EmptyProduct handleOpenShop={handleOpenShop} /> */}
+                    {/* <EmptyProduct handleOpenShop={handleOpenShop} //> */}
+                    {modalContent}
                 </Modals>
             )}
             <motion.header
@@ -91,27 +111,27 @@ const Header = (props: Props) => {
                     <div className=" max-w-[1800px] h-[60px]  w-[100%]  flex items-center px-[24px] md:px-[30px] lg:px-12 xl:px-[60px] lg:mt-2 2xl:mt-3 lg:h-[80px] 2xl:px-[80px] ">
                         <div className="flex-1 lg:block hidden ">
                             <div className="w-[70%] lg:w-[90%] xl:w-[70%] 2xl:w-[60%]">
-                                <div className="w-[100%] flex justify-between items-center">
+                                <NavHoverStyled className="w-[100%] flex justify-between items-center divHover" >
                                     <div
-                                        onClick={handleOpenShop}
-                                        className="flex items-center hover:cursor-pointer"
+                                        onClick={()=>handleOpenShop("shopModalMenu")}
+                                        className="flex items-center hover:cursor-pointer linkHover"
                                     >
                                         <span className="font-semibold">SHOP</span>
                                         <span className="pl-1 xl:-mr-1">
                                             <VscChevronDown />
                                         </span>
                                     </div>
-                                    <div>
+                                    <div className='linkHover'>
                                         <span className="font-semibold hover:cursor-pointer">
                                             DISCOVER
                                         </span>
                                     </div>
-                                    <div className="lg:-mr-3 xl:-mr-1">
+                                    <div className="lg:-mr-3 xl:-mr-1 linkHover">
                                         <span className="font-semibold hover:cursor-pointer">
                                             CO-BRAND
                                         </span>
                                     </div>
-                                </div>
+                                </NavHoverStyled>
                             </div>
                         </div>
 
@@ -119,7 +139,7 @@ const Header = (props: Props) => {
                         <div className="flex-1 justify-start items-center lg:hidden">
                             <div className="max-w-[64px] flex justify-between items-center sm:max-w-[100px] md:max-w-[120px]">
                                 <HiBars2
-                                    onClick={handleOpenShop}
+                                    onClick={()=>handleOpenShop("shopModalMenu")}
                                     className="text-2xl text-gray-800 hover:cursor-pointer"
                                 />
                                 <IoSearchOutline className="text-2xl text-gray-800 lg:hidden hover:cursor-pointer" />
@@ -139,6 +159,7 @@ const Header = (props: Props) => {
                         </div>
                         <div></div>
                         {/*mobile & table*/}
+                        
                         <div className="flex flex-1 justify-end items-center">
                             <div className="flex items-center justify-end w-[100%]">
                                 <div className="w-[50%] lg:w-[100%] xl:w-[90%] 2xl:w-[75%]">
@@ -154,7 +175,7 @@ const Header = (props: Props) => {
                                             </div>
                                             <motion.div
                                                 transition={{duration:1}}
-
+                                                onClick={()=>handleOpenShop("searchModal")}
                                                 className="hidden group/item overflow-hidden max-w-[] text-2xl mr-5 text-gray-800 border border-slate-300 transition ease-in-out duration-500 rounded-full hover:bg-slate-100 md:-mr-2 lg:block 2xl:text-3xl is-search ">
                                                 <label className="relative flex items-center justify-between py-1 transition-all ease-in-out duration-500 hover:cursor-pointer">
                                                     <span className="sr-only">Search</span>
@@ -167,7 +188,10 @@ const Header = (props: Props) => {
                                                 </label>
                                             </motion.div>
                                             <div className="flex flex-1 items-center justify-between md:max-w-[120px] lg:flex-0 lg:max-w-[86px] lg:pl-2 xl:pl-1 xl:max-w-[86px] 2xl:max-w-[100px]">
-                                                <IoCartOutline className="text-2xl mr-4 text-gray-800 hover:cursor-pointer lg:-mr-2 2xl:text-3xl" />
+                                                <IoCartOutline 
+                                                onClick={()=>handleOpenShop("emptyProductCart")}
+
+                                                className="text-2xl mr-4 text-gray-800 hover:cursor-pointer lg:-mr-2 2xl:text-3xl" />
                                                 <FaRegUserCircle className="text-2xl  text-gray-800  hover:cursor-pointer  md:-mr-0 2xl:text-3xl" />
                                             </div>
                                         </div>

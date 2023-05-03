@@ -10,7 +10,7 @@ import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/win
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
-    handleOpenShop: () => void;
+    handleOpenShop?: (type?:string) => void;
 };
 const variants: Variants = {
     enter: {
@@ -78,7 +78,7 @@ const product = [
         src: '/banner.jpg',
     },
 ];
-const EmptyProduct = (props: Props) => {
+const EmptyProductCart = (props: Props) => {
     const [unMounted, setUnMounted] = useState(true);
     const windowSize = useWindowSize();
 // const {width,} =useContext(WindowSizeContext)
@@ -314,4 +314,4 @@ const EmptyProduct = (props: Props) => {
     );
 };
 
-export default EmptyProduct;
+export default EmptyProductCart;

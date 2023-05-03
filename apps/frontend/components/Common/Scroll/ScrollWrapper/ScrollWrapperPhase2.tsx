@@ -22,7 +22,7 @@ function ScrollWrapperPhase2(props: Props) {
 
     return (
         <main className='w-full'>
-        <section ref={containerScrollRef} className="relative h-[3000px] z-20 -mx-6 md:-mx-[30px] lg:-mx-[48px] xl:-mx-[60px] 2xl:-mx-[131px]">
+        <section ref={containerScrollRef} className="relative h-[3000px] z-20 -mx-6 md:-mx-[30px] lg:-mx-[48px] xl:-mx-[60px] 2xl:-mx-[140px]">
                 <ScrollScaleCardPhase2 scrollYProgress={scrollYProgress}/>
             </section>
 
@@ -32,7 +32,7 @@ function ScrollWrapperPhase2(props: Props) {
                     whileInView = {{opacity:1,y:0}}
                     initial={{opacity:0,y:200}}
                     transition={{duration:0.5, delay:0.5}}
-                    className='z-30 bg-white h-[500px] rounded-3xl p-[30px] '>
+                    className='z-30 bg-white min-h-[380px] rounded-3xl p-[30px] lg:h-[500px] '>
                             <ReviewWrapper ></ReviewWrapper>
                     </motion.div>
                 </motion.section>

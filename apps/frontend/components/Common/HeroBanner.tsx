@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useRef } from 'react';
-import banner from '../../public/banner.jpg';
+import banner from '../../public/hero-banner.gif';
 import Marquee from './Marquee';
 import styled from 'styled-components';
 import useOnScreen from '@/lib/hooks/common/useOnScreen';

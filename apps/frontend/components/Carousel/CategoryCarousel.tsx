@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import SwiperWrapper from '../Common/Swiper/SwiperWrapper';
 import { SwiperSlide } from 'swiper/react';
 import ProductCard from '../Product/ProductCard';
 import { SpanText } from '@/styles/LandingPage/Header/Hero/SpanTextStyled';
+import { motion, useInView } from 'framer-motion';
 
 /* eslint-disable-next-line */
 type Props = {
@@ -58,9 +59,25 @@ const products = [
     },
 ];
 function CategoryCarousel(props: Props) {
+    const textRef = useRef();
+    const slideRef = useRef();
+  
+    const inViewText = useInView(textRef,{ once:true });
+    const inViewSlide = useInView(slideRef,{ once:true});
+    
+
+    
+      
     return (
         <div className={`md:flex md:flex-row xl:justify-between md:pt-[80px] 2xl:pt-[100px] ${props?.className}`}>
-            <div className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal xl:mt-20 xl:flex-none xl:w-[35%] 2xl:pr-[120px]">
+            <motion.div 
+            ref={textRef}
+            style={{
+                transform: inViewText ? "none" : "translateX(-200px)",
+                opacity: inViewText ? 1 : 0,
+                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s"
+              }}
+            className="pb-10 mt-10 flex flex-col justify-between md:w-[50%] md:flex-1 md:pr-16 md:justify-normal xl:mt-20 xl:flex-none xl:w-[35%] 2xl:pr-[120px]">
                 <p className="text-[38px] leading-normal mb-2 font-semibold md:mb-2 2xl:text-5xl 2xl:mb-8">
                     {props.spanText ? <SpanText className="text-transparent">Jordan 1</SpanText> : 'Jordan 1'}
                     </p>
@@ -72,8 +89,15 @@ function CategoryCarousel(props: Props) {
                 <button className="text-white text-xl rounded-3xl mb-5 w-[140px] h-[50px] bg-black 2xl:text-2xl 2xl:w-[160px]">
                     Shop Now
                 </button>
-            </div>
-            <div className='relative md:w-[50%] lg:w-[60%] 2xl:w-[60%]'>
+            </motion.div>
+            <motion.div 
+            ref={slideRef}
+            style={{
+                transform: inViewSlide ? "none" : "translateY(200px)",
+                opacity: inViewSlide ? 1 : 0,
+                transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.4s"
+              }}
+            className='relative md:w-[50%] lg:w-[60%] 2xl:w-[60%]'>
                 <p>image png -- background transparent.
                 </p>
                 <SwiperWrapper className="swiper">
@@ -86,7 +110,7 @@ function CategoryCarousel(props: Props) {
                     })}
                     {props?.children}
                 </SwiperWrapper>
-            </div>
+            </motion.div>
         </div>
     );
 }
