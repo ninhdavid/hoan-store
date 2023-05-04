@@ -36,6 +36,7 @@ export function Index() {
                 </StyledPage>
             </div>
         </main>
+        
     );
 }
 

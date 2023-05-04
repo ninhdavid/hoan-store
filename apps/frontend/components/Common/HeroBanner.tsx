@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import React, { useRef } from 'react';
-import banner from '../../public/hero-banner.gif';
+import banner from '../../public/hero-gif.webp';
 import Marquee from './Marquee';
 import styled from 'styled-components';
 import useOnScreen from '@/lib/hooks/common/useOnScreen';
@@ -29,7 +29,9 @@ function HeroBanner(props: Props) {
                 <Image
                     src={banner}
                     alt="banner"
-                    className="h-[calc(100vh-60px)] object-cover w-full lg:h-[calc(100vh-80px)]"
+                    width={800}
+                    height={450}
+                    className="h-[calc(100dvh-60px)] object-cover w-full lg:h-[calc(100dvh-80px)] xl:h-[calc(100vh-80px)]"
                 />
                 <div className="absolute top-[70%] right-[50%] translate-x-[50%]">
                     <button className="mt-10 flex items-center justify-center rounded-full border border-transparent bg-slate-100 px-8 py-3 text-base font-medium text-black hover:bg-slate-50	focus:outline-none motion-safe:animate-bounce">
