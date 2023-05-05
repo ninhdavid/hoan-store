@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export interface ScrollCardContentProps {
-    index?:number;
+    index:number;
     scrollYProgress?: number;
     x?:number|string,
     y?:number|string,

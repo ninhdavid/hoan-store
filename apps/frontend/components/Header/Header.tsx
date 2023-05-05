@@ -1,3 +1,6 @@
+"use client";
+
+
 import { useEffect, useState } from 'react';
 import {motion, useCycle} from 'framer-motion';
 import {

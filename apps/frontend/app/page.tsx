@@ -1,3 +1,6 @@
+"use client";
+
+
 import styled from 'styled-components';
 import Wrapper from '../components/Common/Wrapper/Wrapper';
 import HeroBanner from '../components/Common/HeroBanner';
@@ -13,7 +16,12 @@ const StyledPage = styled.div`
     z-index: 0;
 `;
 
-export function Index() {
+export const metadata = {
+    title: 'Home',
+    description: 'Welcome to frontend!',
+  };
+
+export function Home() {
     /*
      * Replace the elements below with your own.
      *
@@ -40,4 +48,4 @@ export function Index() {
     );
 }
 
-export default Index;
+export default Home;

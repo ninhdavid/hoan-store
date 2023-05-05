@@ -27,8 +27,8 @@ function HeroBanner(props: Props) {
         <div className="w-full mt-[60px] lg:mt-20 ">
             <div className="relative  mx-auto">
                 <Image
-                    src={banner}
-                    alt="banner"
+                    src='/hero-gif.webp'
+                    alt="hero-banner"
                     width={800}
                     height={450}
                     className="h-[calc(100dvh-60px)] object-cover w-full lg:h-[calc(100dvh-80px)] xl:h-[calc(100vh-80px)]"

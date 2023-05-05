@@ -1,7 +1,9 @@
+'use client';
+
 import React, { useCallback, useRef,useContext } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import {Navigation} from 'swiper'
-import 'swiper/css/bundle';
+// import 'swiper/css/bundle';
 import styled from 'styled-components';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 

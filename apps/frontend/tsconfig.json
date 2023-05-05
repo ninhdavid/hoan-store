@@ -19,14 +19,21 @@
       "@/*": [
         "apps/frontend/*"
       ]
-    }
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx",
-    "next-env.d.ts"
+    "next-env.d.ts",
+    "../../apps/frontend/.next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

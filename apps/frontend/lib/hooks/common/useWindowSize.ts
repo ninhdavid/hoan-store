@@ -1,3 +1,5 @@
+'use client';
+
 import { selectSetWindowSize, windowSizeActions } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/store/reduxHooks';
 import { useState, useEffect } from 'react';

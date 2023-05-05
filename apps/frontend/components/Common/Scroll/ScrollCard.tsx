@@ -1,6 +1,8 @@
+'use client';
+
 import images from '@/public/assets/images';
 import Image from 'next/image';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState ,useContext} from 'react';
 import styled from 'styled-components';
 import {motion, MotionValue , useTransform , useInView, AnimatePresence } from 'framer-motion'
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
@@ -11,7 +13,7 @@ import { ScrollCardContent } from '@/styles/Scroll/ScrollCard';
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
     className?: string;
-    scrollYProgress?:MotionValue<number>;
+    scrollYProgress:MotionValue<number>;
     setLastCardOutView?:React.Dispatch<React.SetStateAction<boolean>>;
     lastCardOutView?:boolean;
 };
@@ -81,7 +83,7 @@ const ImageFadeOutVariants = {
 }
 
 const ScrollCard = (props: Props) => {
-    const {lastCardOutView,setLastCardOutView,lastCardInView, setLastCardInView} = React.useContext(ScrollContext)
+    const {lastCardOutView,setLastCardOutView,lastCardInView, setLastCardInView} = useContext(ScrollContext)
 
     const windowSize = useWindowSize();
     const windowWidthSize = windowSize.width
@@ -113,7 +115,7 @@ const ScrollCard = (props: Props) => {
   useEffect(()=>{
     const lastScrollImageContent = lastImageCardRef.current;
     const handleScrollView = () => { 
-        const { top}  = lastScrollImageContent.getBoundingClientRect()
+        const { top }  = lastScrollImageContent.getBoundingClientRect()
         const lastCardOutView = top <= 0
         if(lastCardOutView) {
             setLastCardOutView(false)
@@ -135,8 +137,7 @@ const ScrollCard = (props: Props) => {
     useEffect(() => {
     const lastScrollCardContent = lastScrollCardContentRef.current;
     const handleScroll = () => {
-        const { offsetTop,scrollTop } = lastScrollCardContent;
-        const { height ,top,bottom}  = lastScrollCardContent.getBoundingClientRect()
+        const { bottom}  = lastScrollCardContent.getBoundingClientRect()
             const scrollPosition = window.pageYOffset||window.scrollY;
             const isLastScrollCardContentInView =bottom <=850
             if (isLastScrollCardContentInView) {
@@ -237,7 +238,7 @@ const ScrollCard = (props: Props) => {
                                  
                                         <AnimatePresence initial={false}>
                                             <motion.div                   
-                                                variants={!lastCardOutView && index===0 ?ImageFadeOutVariants: null}
+                                                variants={!lastCardOutView && index===0 ?ImageFadeOutVariants: undefined}
                                                 initial='initial'
                                                 animate='animate'
                                                 exit='exit'

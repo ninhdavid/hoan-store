@@ -35,7 +35,7 @@ function ScrollWrapper(props: Props) {
     } else {
         setTimeout(() => setNewStateLastCard(false), 100)
     }
-    const scrollContainerRef = useRef();
+    const scrollContainerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: scrollContainerRef,
         offset: ['start end', 'end start'],
