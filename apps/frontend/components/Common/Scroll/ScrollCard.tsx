@@ -8,7 +8,7 @@ import {motion, MotionValue , useTransform , useInView, AnimatePresence } from '
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import ScrollImageFullWidth from './ScrollScaleImgPhase2/ScrollImageFullWidth';
 import { ScrollContext } from '../../../Context/ScrollProvider';
-import { ScrollCardContent } from '@/styles/Scroll/ScrollCard';
+import { ScrollCardContentStyled } from '@/styles/Scroll/ScrollCardContentStyled';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
@@ -85,11 +85,12 @@ const ImageFadeOutVariants = {
 const ScrollCard = (props: Props) => {
     const {lastCardOutView,setLastCardOutView,lastCardInView, setLastCardInView} = useContext(ScrollContext)
 
+    
     const windowSize = useWindowSize();
     const windowWidthSize = windowSize.width
-
-    const lastScrollCardContentRef = useRef(null);
-    const lastImageCardRef = useRef(null);
+    
+    const lastImageCardRef = useRef<HTMLImageElement| null>(null);
+    const lastScrollCardContentRef = useRef<HTMLDivElement>(null);
 
     
     // Card Animation case
@@ -115,15 +116,19 @@ const ScrollCard = (props: Props) => {
   useEffect(()=>{
     const lastScrollImageContent = lastImageCardRef.current;
     const handleScrollView = () => { 
+        if(lastScrollImageContent !== null){
         const { top }  = lastScrollImageContent.getBoundingClientRect()
-        const lastCardOutView = top <= 0
-        if(lastCardOutView) {
-            setLastCardOutView(false)
-        }else{
-            setLastCardOutView(true)
+        const lastCardContentOutView = top <= 0
+        const newLastCardContent = lastCardContentOutView
+        if(!newLastCardContent !== lastCardOutView) {
+            setLastCardOutView(!lastCardOutView)
         }
+        // else{
+        //     setLastCardOutView(true)
+        // }
     }
-     
+    }
+
     window.addEventListener('scroll', handleScrollView);
     
     return () => {
@@ -132,21 +137,29 @@ const ScrollCard = (props: Props) => {
     };
   },[])
 
+
   //last card bottom in view
 
     useEffect(() => {
     const lastScrollCardContent = lastScrollCardContentRef.current;
     const handleScroll = () => {
+        if(lastScrollCardContent !== null){
         const { bottom}  = lastScrollCardContent.getBoundingClientRect()
             const scrollPosition = window.pageYOffset||window.scrollY;
             const isLastScrollCardContentInView =bottom <=850
-            if (isLastScrollCardContentInView) {
-            setLastCardInView(true)
-            
-            }else{
-            setLastCardInView(false)
+            const newLastCardInView = isLastScrollCardContentInView;
+            if (newLastCardInView !== lastCardInView) {
+                setLastCardInView(newLastCardInView);
+              }
 
-            }
+            // if (isLastScrollCardContentInView) {
+            // setLastCardInView(true)
+            
+            // }else{
+            // setLastCardInView(false)
+
+            // }
+        }
     };
     window.addEventListener('scroll', handleScroll);
     
@@ -214,19 +227,21 @@ const ScrollCard = (props: Props) => {
    
     return (
         <>
-            {products?.map((product, index) => {
+            {products?.map((product, _index) => {
                 return (
-                    <ScrollCardContent
+                    <ScrollCardContentStyled
                         layout
                         as={motion.div}
                         key={product.id}
-                        index={index}
+                        // dataindex={_index}
+                        data-index={_index}
                         className={`${props?.className} z-10 w-[300px] mb-[30vh] sticky xl:w-[30vw] 2xl:w-[20vw] 2xl:max-w-[600px]`}
-                        ref={index === products.length - 1 ? lastScrollCardContentRef :null}
-                        style={{ translateX: getAnimation(index)?.animateXValue,
-                                translateY:getAnimation(index)?.animateYValue,
+                        // ref={products && _index === products.length - 1 ? lastScrollCardContentRef : undefined}
+                        ref={_index === products?.length - 1 ? lastScrollCardContentRef : undefined}
+                        style={{ translateX: getAnimation(_index)?.animateXValue,
+                                translateY:getAnimation(_index)?.animateYValue,
                                 transition: 'transform 0.5s linear' ,
-                                position: windowWidthSize <640 ? index===0 ? 'sticky' :'sticky' : 'sticky',
+                                position: windowWidthSize <640 ? _index===0 ? 'sticky' :'sticky' : 'sticky',
                             }}
                             >
                             <div>
@@ -238,13 +253,13 @@ const ScrollCard = (props: Props) => {
                                  
                                         <AnimatePresence initial={false}>
                                             <motion.div                   
-                                                variants={!lastCardOutView && index===0 ?ImageFadeOutVariants: undefined}
+                                                variants={!lastCardOutView && _index===0 ?ImageFadeOutVariants: undefined}
                                                 initial='initial'
                                                 animate='animate'
                                                 exit='exit'
                                                 >
                                                 <Image
-                                                ref={index===4 ? lastImageCardRef: null}
+                                                ref={_index===4 ? lastImageCardRef: null}
                                                 src="/banner.jpg"
                                                 alt="product-card-preview"
                                                 width={300}
@@ -269,7 +284,7 @@ const ScrollCard = (props: Props) => {
 
 
 
-                        </ScrollCardContent>
+                        </ScrollCardContentStyled>
                 );
             })}
         </>

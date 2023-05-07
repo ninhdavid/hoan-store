@@ -8,7 +8,7 @@ type Props = {
     isIntersecting: boolean;
 };
 
-const marquee = (from, to) => keyframes`
+const marquee = (from:string, to:string) => keyframes`
 from {
   transform: translateX(${from}) ;
 }

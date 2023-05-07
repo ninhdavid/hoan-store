@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useRef } from 'react';
 import SwiperWrapper from '../Common/Swiper/SwiperWrapper';
 import { SwiperSlide } from 'swiper/react';
@@ -59,8 +61,8 @@ const products = [
     },
 ];
 function CategoryCarousel(props: Props) {
-    const textRef = useRef();
-    const slideRef = useRef();
+    const textRef = useRef<HTMLDivElement>(null);
+    const slideRef = useRef<HTMLDivElement>(null);
   
     const inViewText = useInView(textRef,{ once:true });
     const inViewSlide = useInView(slideRef,{ once:true});

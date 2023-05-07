@@ -12,72 +12,13 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import Link from 'next/link';
-import { WindowSizeContext } from '@/Context/WindowSizeProvider';
 import { useAppSelector } from '@/redux/store/reduxHooks';
 import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/windowSize/windowSizeSlice';
+import { ImageSlide } from '@/styles/LandingPage/Header/Cart/Empty/ImageSlide';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
 
-const ImageSlide = styled.div`
-    .img-slide {
-        position: absolute;
-        width: 81%;
-        height: 90%;
-        border-radius: 8px;
-        left: -125%;
-    }
-    .next,
-    .prev {
-        top: calc(50% - 20px);
-        position: absolute;
-        background: white;
-        border-radius: 30px;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        user-select: none;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 24px;
-        z-index: 2;
-    }
-    .next {
-        right: 0px;
-    }
-
-    .prev {
-        left: 0px;
-        transform: scale(-1);
-    }
-
-    @media screen and (min-width: 768px) {
-        .img-slide {
-            width: 70%;
-            left: -102%;
-            cursor: -webkit-grab;
-            cursor: grab;
-        }
-    }
-    @media screen and (min-width: 1024px) {
-        .img-slide {
-            width: 65%;
-            left: -90%;
-            cursor: -webkit-grab;
-            cursor: grab;
-        }
-    }
-    @media screen and (min-width: 1536px) {
-        .img-slide {
-            width: 60%;
-            left: -80%;
-            cursor: -webkit-grab;
-            cursor: grab;
-        }
-    }
-`;
 
 // const images = ['/banner.jpg', '/banner.jpg', '/banner.jpg', '/banner.jpg', '/banner.jpg'];
 const images = [
@@ -96,7 +37,7 @@ function SlideImage(props: Props) {
     // const windowSize = useAppSelector(selectSetWindowSize)
 
 
-    const constraintsRef = useRef(null);
+    const constraintsRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setWindowChange(windowSize.width);

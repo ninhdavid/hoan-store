@@ -7,7 +7,7 @@ import { EventTargetHandler } from '@/types/common/types';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
-    handleOpenShop?: (type?:string) => void;
+    handleOpenShop: (type?:string) => void;
 
 };
 const searchHeaderHeight= 300

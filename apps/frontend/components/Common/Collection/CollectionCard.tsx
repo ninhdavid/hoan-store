@@ -80,7 +80,7 @@ const CollectionCard = (props: Props) => {
                     initial={{opacity:0,x:810}}
                     transition={{ 
                         x: { type: "spring", stiffness: 300, damping: 22 },
-                        duration: 0.6 ,delay:0.6 }}
+                        duration: 0.7 ,delay:0.5 }}
                     className='flex flex-col justify-center items-center xl:col-start-7 xl:col-span-3 xl:row-start-1 xl:row-span-2 bg-gray-50'>
                         <div className='flex flex-col justify-center h-full w-full bg-green-500'>
                             <h1 className='text-[80px] font-extrabold text-white'>Text here</h1>
@@ -89,7 +89,7 @@ const CollectionCard = (props: Props) => {
                     </motion.div>
     
                     <motion.div 
-                    animate={{opacity:1,x:0 }}  
+                    whileInView={{opacity:1,x:0 }}  
                     initial={{opacity:0,x:900}}
                     transition={{ 
                         x: { type: "spring", stiffness: 100, damping: 22 , duration: 0.6},

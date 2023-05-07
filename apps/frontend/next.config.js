@@ -15,6 +15,15 @@ const nextConfig = {
     experimental: {
         appDir: true,
         typedRoutes: true,
+        serverActions: true,
+    },
+    // reactStrictMode: true,
+    compiler: {
+        styledComponents: {
+            displayName: true,
+            ssr: true,
+            minify: true,
+          },
     },
 };
 

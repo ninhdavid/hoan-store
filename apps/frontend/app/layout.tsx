@@ -2,10 +2,12 @@ import Header from '@/components/Header/Header';
 import '../styles/styles.css';
 import { Providers } from './provider';
 import Footer from '@/components/Footer/Footer';
-import { ServerStyleSheet } from 'styled-components';
-import StyledComponentsRegistry from '@/app/StyledComponentsRegistry'
+import StyledComponentsRegistry from '@/app/registry'
 import Head from './head';
 import "swiper/swiper.min.css"
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 
 export default function RootLayout({
