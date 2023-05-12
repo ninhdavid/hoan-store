@@ -1,4 +1,5 @@
-import React, { useState, useRef, useEffect ,useContext} from 'react';
+'use client';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import { BsDot } from 'react-icons/bs';
 import {
     motion,
@@ -7,7 +8,6 @@ import {
     TargetAndTransition,
     useMotionValue,
 } from 'framer-motion';
-import { wrap } from 'popmotion';
 import styled from 'styled-components';
 import Image from 'next/image';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
@@ -18,7 +18,6 @@ import { ImageSlide } from '@/styles/LandingPage/Header/Cart/Empty/ImageSlide';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
-
 
 // const images = ['/banner.jpg', '/banner.jpg', '/banner.jpg', '/banner.jpg', '/banner.jpg'];
 const images = [
@@ -35,7 +34,6 @@ function SlideImage(props: Props) {
     const windowSize = useWindowSize();
     // const {width,} = useContext(WindowSizeContext)
     // const windowSize = useAppSelector(selectSetWindowSize)
-
 
     const constraintsRef = useRef<HTMLDivElement>(null);
 
@@ -76,7 +74,11 @@ function SlideImage(props: Props) {
             {windowChange && (
                 <>
                     <ImageSlide className="flex h-full w-full pt-5">
-                        <AnimatePresence key={windowSize.width} custom={{ direction, page }} initial={false}>
+                        <AnimatePresence
+                            key={windowSize.width}
+                            custom={{ direction, page }}
+                            initial={false}
+                        >
                             <motion.div className="h-[100px] w-[100px]" ref={constraintsRef}>
                                 {images.map((image) => (
                                     <motion.div

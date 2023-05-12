@@ -1,3 +1,4 @@
+'use client'
 import React ,{useRef, useState}from 'react';
 import ScrollImageFullWidth from '../ScrollScaleImgPhase2/ScrollImageFullWidth';
 import { useScroll,motion,useInView } from 'framer-motion';
@@ -14,7 +15,7 @@ const textVariants = {
 
 
 function ScrollWrapperPhase2(props: Props) {
-    const containerScrollRef = React.useRef()
+    const containerScrollRef = React.useRef(null)
     const {scrollYProgress} = useScroll({
         target: containerScrollRef,
         offset: ['start end' ,'end start']

@@ -1,5 +1,4 @@
-"use client";
-
+'use client';
 
 import styled from 'styled-components';
 import Wrapper from '../components/Common/Wrapper/Wrapper';
@@ -11,22 +10,25 @@ import ScrollImageFullWidth from '@/components/Common/Scroll/ScrollScaleImgPhase
 import ScrollWrapperPhase2 from '@/components/Common/Scroll/ScrollWrapper/ScrollWrapperPhase2';
 import ScrollProvider from '@/Context/ScrollProvider';
 import CollectionWrapper from '@/components/Common/Collection/CollectionWrapper';
+import { Metadata } from 'next';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import SplashScreen from '@/components/Common/Loader/SplashScreen';
 
 const StyledPage = styled.div`
     z-index: 0;
 `;
-
-export const metadata = {
+const metadata: Metadata = {
     title: 'Home',
     description: 'Welcome to frontend!',
-  };
-
+};
 export function Home() {
     /*
      * Replace the elements below with your own.
      *
      * Note: The corresponding styles are in the ./index.styled-components file.
      */
+
     return (
         <main>
             <div className=" mx-auto">
@@ -34,7 +36,10 @@ export function Home() {
                 <StyledPage className="w-full">
                     <Wrapper className="scroll-smooth">
                         <CategoryCarousel></CategoryCarousel>
-                        <CategoryCarousel spanText className="lg:-mt-5 lg:mb-[3vh] 2xl:-mt-20 2xl:mb-[4vh]"></CategoryCarousel>
+                        <CategoryCarousel
+                            spanText
+                            className="lg:-mt-5 lg:mb-[3vh] 2xl:-mt-20 2xl:mb-[4vh]"
+                        ></CategoryCarousel>
                         <ScrollProvider>
                             <ScrollWrapper></ScrollWrapper>
                             <ScrollWrapperPhase2></ScrollWrapperPhase2>
@@ -44,7 +49,6 @@ export function Home() {
                 </StyledPage>
             </div>
         </main>
-        
     );
 }
 

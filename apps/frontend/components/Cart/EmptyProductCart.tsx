@@ -1,7 +1,7 @@
-import React, { useState ,useContext} from 'react';
+'use client';
+import React, { useState, useContext } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
-import { wrap } from 'popmotion';
 import SlideImage from './SlideImage';
 import useWindowSize from '@/lib/hooks/common/useWindowSize';
 import { EventTargetHandler } from '@/types/common/types';
@@ -10,7 +10,7 @@ import { selectSetWindowSize } from '@/redux/ActionsReducer/MenuModal/Common/win
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
-    handleOpenShop?: (type?:string) => void;
+    handleOpenShop: (type?: string) => void;
 };
 const variants: Variants = {
     enter: {
@@ -81,10 +81,10 @@ const product = [
 const EmptyProductCart = (props: Props) => {
     const [unMounted, setUnMounted] = useState(true);
     const windowSize = useWindowSize();
-// const {width,} =useContext(WindowSizeContext)
-// const windowSize =useAppSelector(selectSetWindowSize)
+    // const {width,} =useContext(WindowSizeContext)
+    // const windowSize =useAppSelector(selectSetWindowSize)
     const durationRuntime = windowSize.width >= 1024 ? 600 : 300;
-    
+
     const handleOpenShop = (e: EventTargetHandler) => {
         e.stopPropagation();
         setUnMounted(false);
@@ -116,7 +116,7 @@ const EmptyProductCart = (props: Props) => {
                             <div className="px-[30px] pt-[30px] pb-[20px] h-full 2xl:px-20 2xl:pt-14 2xl:pb-6">
                                 <div className="relative flex justify-between items-center flex-row-reverse">
                                     <motion.span
-                                    whileTap={{ scale: 0.95,opacity:0.5 }}
+                                        whileTap={{ scale: 0.95, opacity: 0.5 }}
                                         onClick={handleOpenShop}
                                         className={`flex items-center justify-center w-10 h-10 -translate-y-2 text-xl text-gray-800  bg-white rounded-full z-40 border transition duration-200 hover:bg-gray-100 hover:cursor-pointer hover:-translate-y-1 focus:bg-white  `}
                                     >

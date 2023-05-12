@@ -1,3 +1,4 @@
+'use client'
 import React, { useState, useContext } from 'react';
 import { HiXMark } from 'react-icons/hi2';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';

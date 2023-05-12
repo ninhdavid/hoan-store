@@ -1,4 +1,6 @@
+'use client'
 // import useWindowSize from '@/lib/hooks/common/useWindowSize'
+
 // import React  from 'react'
 
 // // eslint-disable-next-line @typescript-eslint/ban-types
