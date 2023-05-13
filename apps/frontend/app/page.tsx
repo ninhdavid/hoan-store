@@ -1,5 +1,4 @@
 'use client';
-
 import styled from 'styled-components';
 import Wrapper from '../components/Common/Wrapper/Wrapper';
 import HeroBanner from '../components/Common/HeroBanner';
@@ -18,10 +17,7 @@ import SplashScreen from '@/components/Common/Loader/SplashScreen';
 const StyledPage = styled.div`
     z-index: 0;
 `;
-const metadata: Metadata = {
-    title: 'Home',
-    description: 'Welcome to frontend!',
-};
+
 export function Home() {
     /*
      * Replace the elements below with your own.

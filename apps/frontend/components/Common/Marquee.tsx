@@ -1,6 +1,6 @@
-'use client'
+'use client';
 import styled, { keyframes } from 'styled-components';
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react';
 
 type Props = {
     children: React.ReactNode[];
@@ -9,7 +9,7 @@ type Props = {
     isIntersecting: boolean;
 };
 
-const marquee = (from:string, to:string) => keyframes`
+const marquee = (from: string, to: string) => keyframes`
 from {
   transform: translateX(${from}) ;
 }
@@ -18,15 +18,20 @@ to{
 }
 `;
 
-const TextAnimate = styled.div<{ direction?: string ,isIntersected?:boolean}>`
+const TextAnimate = styled.div<{ direction?: string; isIntersected?: boolean }>`
     will-change: transform;
     position: relative;
-    transform: translateX(${(props) => (props.direction === 'forward' ? '65vw' : '35vw')});
+    transform: translateX(${(props) => (props.direction === 'forward' ? '55vw' : '45vw')});
 
     & > p {
         transform: translateX(${(props) => (props.direction === 'forward' ? '-200%' : '200%')})
             scaleX(${(props) => (props.direction === 'forward' ? '-1' : '1')});
-        animation: ${(props) => (props.isIntersected? (props.direction === 'forward' ? marquee('-200%', '200%') : marquee('200%', '-200%')):'')}
+        animation: ${(props) =>
+                props.isIntersected
+                    ? props.direction === 'forward'
+                        ? marquee('-200%', '200%')
+                        : marquee('200%', '-200%')
+                    : ''}
             20s linear infinite;
         right: ${(props) => (props.direction === 'forward' ? 'auto' : '0')};
         left: ${(props) => (props.direction === 'forward' ? '0' : 'auto')};
@@ -48,14 +53,17 @@ const TextAnimate = styled.div<{ direction?: string ,isIntersected?:boolean}>`
 `;
 
 function Marquee(props: Props) {
-    const [isIntersected,setIntersected] = useState(false)
-    useEffect(
-()=>{
-    if(props.isIntersecting) return setIntersected(true)
-},[props.isIntersecting])
+    const [isIntersected, setIntersected] = useState(false);
+    useEffect(() => {
+        if (props.isIntersecting) return setIntersected(true);
+    }, [props.isIntersecting]);
 
     return (
-        <TextAnimate isIntersected={isIntersected} direction={props?.direction} className={props.className}>
+        <TextAnimate
+            isIntersected={isIntersected}
+            direction={props?.direction}
+            className={props.className}
+        >
             {props.children}
         </TextAnimate>
     );

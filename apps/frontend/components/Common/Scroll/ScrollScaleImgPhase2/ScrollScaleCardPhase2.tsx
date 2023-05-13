@@ -24,7 +24,7 @@ const ScrollScaleCardPhase2 = (props: Props) => {
     const scaleXOutputWidth1024 =
         windowWidthSize >= 1024 ? ['-190vw', '100vw'] : scaleXOutputWidth768;
     const scaleXOutputWidth1440 =
-        windowWidthSize >= 1440 ? ['-150vw', '100vw'] : scaleXOutputWidth1024;
+        windowWidthSize >= 1440 ? ['-70vw', '100vw'] : scaleXOutputWidth1024;
     const scaleXOutputWidth1920 =
         windowWidthSize >= 1920 ? ['-105vw', '100vw'] : scaleXOutputWidth1440;
 
@@ -33,7 +33,7 @@ const ScrollScaleCardPhase2 = (props: Props) => {
     const scaleYOutputWidth1024 =
         windowWidthSize >= 1024 ? ['-210vh', '100svh'] : scaleYOutputWidth768;
     const scaleYOutputWidth1440 =
-        windowWidthSize >= 1440 ? ['10vh', '100svh'] : scaleYOutputWidth1024;
+        windowWidthSize >= 1440 ? ['0vh', '100svh'] : scaleYOutputWidth1024;
     const scaleYOutputWidth1920 =
         windowWidthSize >= 1920 ? ['-40vh', '100svh'] : scaleYOutputWidth1440;
 

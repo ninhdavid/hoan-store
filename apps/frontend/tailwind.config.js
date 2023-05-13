@@ -15,6 +15,9 @@ module.exports = {
             gridRowStart: {
                 8: '8',
             },
+            fontFamily: {
+                sans: ['var(--font-modernEra)'],
+            },
         },
     },
     plugins: [],

@@ -1,20 +1,26 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { FaFacebook, FaInstagram } from 'react-icons/fa';
 import Link from 'next/link';
 import Button from '../Common/Button';
 import { VscChevronDown } from 'react-icons/vsc';
-import { NavHoverStyled } from '@/styles/LandingPage/Footer/FooterStyled';
+import { NavHoverStyled, ScrollTopStyled } from '@/styles/LandingPage/Footer/FooterStyled';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
 
 const Footer = (props: Props) => {
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
     return (
-        <footer className="flex justify-center">
-            <main className="bg-white pt-20 pb-10 px-[30px] w-[1800px] lg:px-[48px] xl:px-[60px] 2xl:px-[120px] xl:pb-20">
+        <footer className="flex justify-center ">
+            <main className="relative bg-white pt-[30px] pb-[10px] px-[30px] w-[1920px] lg:pt-[48px] lg:pb-[28px]  lg:px-[48px] xl:px-[60px] xl:pt-[60px] xl:pb-[40px] 2xl:pt-[120px] 2xl:pb-[80px] 2xl:px-[120px]">
                 <div className="flex justify-center flex-col">
                     <div className="lg:flex lg:flex-row">
                         <section className="lg:w-[50%]">
@@ -113,6 +119,15 @@ const Footer = (props: Props) => {
                         </div>
                     </section>
                 </div>
+                <ScrollTopStyled>
+                    <div
+                        onClick={scrollToTop}
+                        className="animate-bounce transition-opacity duration-300"
+                    >
+                        <p className="text-upright">Scroll to top!</p>
+                        <div className="arrow-up"></div>
+                    </div>
+                </ScrollTopStyled>
             </main>
         </footer>
     );

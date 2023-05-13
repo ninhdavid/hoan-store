@@ -18,6 +18,11 @@ interface SplashLoadStyledProps {
 const incAnimatePhase1 = keyframes`
     0% {
         width: 0%;
+        opacity: 0;
+    }
+    40%{
+        opacity: 1;
+        width: 0%;
     }
     100% {
         width: 30%;
@@ -108,23 +113,27 @@ const SplashLoadStyled = styled.main<SplashLoadStyledProps>`
 
     .content-wrapper {
         ${(props) =>
-            !props.isLoading &&
-            css`
+            !props.isLoading
+                ? css`
                 --animation-delay: 3.5s;
                 animation: ${contentWrapperPhase2} 1.5s cubic-bezier(0.99, 0, 0, 1) forwards;
                 var(--animation-delay);
                 animation-delay: var(--animation-delay);
-            `}
+            `
+                : ''}
     }
     .content {
-        animation: ${contentPhase1} 2s ease-out forwards;
+        opacity: 0;
+        animation: ${contentPhase1} 1s ease-out forwards;
+        animation-delay: 1s;
     }
     .content {
         ${(props) =>
             !props.isLoading
                 ? css`
+                opacity:1;
                 --animation-delay: 3.2s;
-                animation: ${contentPhase2} 1s cubic-bezier(0.99, 0, 0, 1) forwards;
+                animation: ${contentPhase2} 1s cubic-bezier(1,0,.59,1) forwards;
                 var(--animation-delay);
                 animation-delay: var(--animation-delay);
             `
@@ -205,11 +214,11 @@ const SplashScreen = (props: Props) => {
         setTimeout(() => {
             divIsMounted();
         }, 5000);
-    }, [isLoading]);
+    }, []);
 
     return (
         <SplashLoadStyled isLoading={isLoading}>
-            <main className="fixed top-0 bottom-0 right-0 left-0 z-[60]" ref={divRef}>
+            <main className="fixed top-0 bottom-0 right-0 left-0 z-[30]" ref={divRef}>
                 <div className="absolute w-[100svw] h-[100svh] top-0 left-0 flex  justify-center bg-gray-500">
                     <div className="w-[98svw] my-[2svh] bg-white  rounded-3xl flex items-center justify-center content-wrapper">
                         <div className="flex items-center justify-center flex-col content">
