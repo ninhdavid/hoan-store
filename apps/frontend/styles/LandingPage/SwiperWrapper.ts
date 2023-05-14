@@ -87,7 +87,7 @@ export const SwiperSlideStyled = styled.div`
                 margin-bottom: 12px;
                 height: 300px;
                 width: 340px;
-                object-fit: fill;
+                // object-fit: cover;
             }
         }
     }
@@ -123,7 +123,7 @@ export const SwiperSlideStyled = styled.div`
                 margin-bottom: 16px;
                 height: 360px;
                 width: 400px;
-                object-fit: fill;
+                // object-fit: fill;
             }
         }
         @media screen and (min-width: 1920px) {

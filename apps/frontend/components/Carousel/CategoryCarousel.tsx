@@ -21,7 +21,7 @@ const products = [
         price: 20000000,
         size: 28,
         quantity: 12,
-        src: '/banner.jpg',
+        src: '/assets/products/dunkLow/dunk-low-retro.webp',
     },
     {
         id: 2,
@@ -30,7 +30,7 @@ const products = [
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/products/dunkLow/jd1-low-g-golf.webp',
     },
     {
         id: 3,
@@ -39,7 +39,7 @@ const products = [
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/products/dunkLow/jd1-low-b-red.webp',
     },
     {
         id: 4,
@@ -48,7 +48,7 @@ const products = [
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/products/dunkLow/dunk-low-retro.webp',
     },
     {
         id: 5,
@@ -57,7 +57,7 @@ const products = [
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/products/dunkLow/jd1-low-g-golf.webp',
     },
 ];
 function CategoryCarousel(props: Props) {
@@ -88,9 +88,10 @@ function CategoryCarousel(props: Props) {
                     )}
                 </p>
                 <p className="mb-5 md:text-sm 2xl:text-lg 2xl:mb-7">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque repellendus
-                    saepe ducimus amet ipsa laboriosam nemo. Reprehenderit alias laborum, id non
-                    dolorem, minima ea aperiam a amet voluptas repellat error.
+                    Kết hợp độc đáo giữa phong cách thể thao và streetwear, đôi giày này mang đến sự
+                    cá nhân hóa và sự nổi bật với thiết kế cắt và phối màu sáng tạo. Với sự ảnh
+                    hưởng từ sneaker, Jordan 1 và Dunk, đôi giày này sẽ là điểm nhấn hoàn hảo để tỏa
+                    sáng và tự tin trong mọi dịp.
                 </p>
                 <button className="text-white text-xl rounded-3xl mb-5 w-[140px] h-[50px] bg-black 2xl:text-2xl 2xl:w-[160px]">
                     Shop Now
@@ -105,7 +106,6 @@ function CategoryCarousel(props: Props) {
                 }}
                 className="relative md:w-[50%] lg:w-[60%] 2xl:w-[60%]"
             >
-                <p>image png -- background transparent.</p>
                 <SwiperWrapper className="swiper">
                     {products.map((product) => {
                         return (

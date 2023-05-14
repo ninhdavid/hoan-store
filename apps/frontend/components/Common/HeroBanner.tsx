@@ -29,8 +29,8 @@ function HeroBanner(props: Props) {
                 <Image
                     src="/hero-gif.webp"
                     alt="hero-banner"
-                    width={800}
-                    height={450}
+                    width={1000}
+                    height={800}
                     className="h-[calc(100dvh-60px)] object-cover w-full lg:h-[calc(100dvh-80px)] xl:h-[calc(100vh-80px)]"
                 />
                 <div className="absolute top-[70%] right-[50%] translate-x-[50%]">

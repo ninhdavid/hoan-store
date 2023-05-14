@@ -72,7 +72,7 @@ export default function RootLayout({
                 <StyledComponentsRegistry>
                     <main className="app">
                         <Providers>
-                            {/* <SplashScreen /> */}
+                            <SplashScreen />
                             <Header />
                             {children}
                             <Footer />

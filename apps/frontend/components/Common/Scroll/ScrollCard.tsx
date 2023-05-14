@@ -21,58 +21,58 @@ type Props = {
 const products = [
     {
         id: 1,
-        name: 'Jordan 1 High OG Bred',
-        color: 'red',
+        name: 'Jordan 1 Low',
+        color: 'blue-white',
         price: 20000000,
         size: 28,
         quantity: 12,
-        src: '/banner.jpg',
+        src: '/assets/poster/jd1-low-travisscott-fragment.jpg',
         description: 'This is new feature',
-        subtitle: 'Jordan 1',
+        subtitle: 'Jordan 1 Low',
     },
     {
         id: 2,
-        name: 'Jordan 1',
-        color: 'blue',
+        name: 'Jordan 1 High',
+        color: 'retro',
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/poster/jd1-high-retro-defiant-couture.jpg',
         description: 'This is new feature',
-        subtitle: 'Jordan 1',
+        subtitle: 'Jordan 1 High',
     },
     {
         id: 3,
-        name: 'Jordan 1',
-        color: 'yellow',
+        name: 'Jordan 1 High',
+        color: 'blue-white',
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/poster/jd1-high-travisscot-fragment.jpg',
         description: 'This is new feature',
-        subtitle: 'Jordan 1',
+        subtitle: 'Jordan 1 High',
     },
     {
         id: 4,
-        name: 'Jordan 1',
-        color: 'white',
+        name: 'Jordan 1 Low',
+        color: 'pink',
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/poster/jd1-low-strangelove-skateboards.jpg',
         description: 'This is new feature',
-        subtitle: 'Jordan 1',
+        subtitle: 'Jordan 1 Low',
     },
     {
         id: 5,
-        name: 'Jordan 1',
-        color: 'green',
+        name: 'Jordan 4',
+        color: 'sail',
         price: 20000,
         size: 28,
         quantity: 1,
-        src: '/banner.jpg',
+        src: '/assets/poster/jd4-retro-offwhite-sail.jpg',
         description: 'This is new feature',
-        subtitle: 'Jordan 1',
+        subtitle: 'Jordan 4',
     },
 ];
 
@@ -336,11 +336,11 @@ const ScrollCard = (props: Props) => {
                                     >
                                         <Image
                                             ref={_index === 4 ? lastImageCardRef : null}
-                                            src="/banner.jpg"
+                                            src={product?.src}
                                             alt="product-card-preview"
-                                            width={300}
-                                            height={500}
-                                            className="z-10 absolute object-cover min-h-[240px] left-[3%] bottom-[-7%] w-[80%] h-[80%] rounded-3xl xl:w-[60%] xl:left-[2%] 2xl:w-[270px] 2xl:left-[10px]"
+                                            width={600}
+                                            height={600}
+                                            className="z-10 absolute object-cover min-h-[240px] left-[3%] bottom-[-7%] w-[80%] h-[80%] rounded-3xl xl:w-[60%] xl:left-[2%] 2xl:w-[270px] 2xl:left-[10px] drop-shadow-md"
                                         />
                                     </motion.div>
                                 </AnimatePresence>

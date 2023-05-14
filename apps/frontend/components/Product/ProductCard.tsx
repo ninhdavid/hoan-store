@@ -5,19 +5,27 @@ import React from 'react';
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {
     product: any;
-    className:string;
+    className: string;
 };
 
-const ProductCard = ({ product ,className}: Props) => {
+const ProductCard = ({ product, className }: Props) => {
     return (
-        <div className='flex justify-center'>
+        <div className="flex justify-center">
             <Link
                 href={`/product/id`}
                 className="transform overflow-hidden bg-white duration-200 hover:scale-105 cursor-pointer"
             >
-                <Image src={product.src} alt={product.name} width={500} height={500} />
+                <Image
+                    src={product.src}
+                    alt={product.name}
+                    width={300}
+                    height={350}
+                    className="object-cover"
+                />
                 <div className={`p-4 leading-relaxed text-black/[0.9] ${className}`}>
-                    <h2 className="text-xl uppercase font-medium leading-relaxed">{product.name}</h2>
+                    <h2 className="text-xl uppercase font-medium leading-relaxed">
+                        {product.name}
+                    </h2>
                     <div className="flex items-center pl-3 p-1   text-black/[0.5]">
                         <p className="mr-2 text-lg font-semibold">&#8363;{product.price}</p>
 

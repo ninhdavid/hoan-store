@@ -78,12 +78,20 @@ function ScrollWrapper(props: Props) {
                                                 </span>
                                             </p>
                                             <p className="text-base mb-3 md:mb-5 2xl:mb-8 2xl:text-lg">
-                                                The world has new playgrounds of innovation. Web3
+                                                {/* The world has new playgrounds of innovation. Web3
                                                 and Metaverse are new frontiers to explore. It gives
                                                 new ambitions and it sparks imagination. We believe
                                                 it needs craft, storytelling and culturally-relevant
                                                 ideas. We help brands explore these spaces with a
-                                                consistent story.
+                                                consistent story. */}
+                                                Nơi tạo nên phong cách độc đáo cho bạn. Với sự đam
+                                                mê về custom giày và cung cấp những đôi giày thời
+                                                trang tuyệt vời, chúng tôi là địa điểm lý tưởng để
+                                                bạn tạo ra phong cách riêng và tỏa sáng. Tự tin, độc
+                                                đáo và chất lượng là triết lý của chúng tôi, đảm bảo
+                                                rằng mỗi cặp giày đều mang đến sự tái sinh và sự tự
+                                                tin cho bạn. Hãy cùng chúng tôi tạo nên phong cách
+                                                độc đáo phù hợp với chính bạn!
                                             </p>
                                             <button className="text-white  text-xl rounded-3xl w-[140px] h-[50px] bg-black 2xl:text-2xl 2xl:w-[160px]">
                                                 Shop Now

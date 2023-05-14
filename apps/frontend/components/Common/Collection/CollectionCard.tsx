@@ -7,11 +7,34 @@ import { CollectionCardStyled } from '@/styles/LandingPage/CollectionCardStyled'
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
-
+const collections = [
+    {
+        id: 1,
+        src: '/assets/collection/jd1-high-retro-chicago.jpg',
+        title: 'The Epitome of Style and Performance: Jordan 1 High OG',
+        description:
+            'Jordan 1 High OG - Khi phong cách và hiệu năng giao thoa, mang đến trải nghiệm tuyệt vời nhất.',
+    },
+    {
+        id: 2,
+        src: '/assets/collection/air-force-1-low-skeleton.jpg',
+        title: 'Nike Air Max: Embrace Breakthrough and Confidence with Supreme Athletic Style',
+        description:
+            'Nike Air Max: Khám phá phong cách và sự thoải mái tuyệt vời với công nghệ đệm tiên tiến và thiết kế vượt thời gian.',
+    },
+    {
+        id: 3,
+        src: '/assets/collection/happy-air-max-day.jpg',
+        title: 'Air Max Day: Celebrating the Iconic Air Max Legacy',
+        description:
+            'Ngày Air Max: Tôn vinh di sản huyền thoại của dòng giày Air Max. Hãy cùng chúng tôi kỷ niệm và truyền cảm hứng từ những thiết kế đột phá và công nghệ đệm tiên tiến của Air Max. Mỗi ngày Air Max là một cơ hội để chúng ta khám phá thế giới thể thao và thời trang qua một góc nhìn độc đáo và phong cách.',
+    },
+];
 const CollectionCard = (props: Props) => {
     const windowSize = useWindowSize();
 
     const windowWidthSize = windowSize.width;
+    // const collection = collections.map((collection) => collection);
     return (
         <main className="h-full w-full">
             <CollectionCardStyled>
@@ -28,10 +51,10 @@ const CollectionCard = (props: Props) => {
                             className="cursor-pointer w-full h-full  "
                         >
                             <Image
-                                src="/banner.jpg"
+                                src={collections[0].src}
                                 alt="banner"
-                                width={300}
-                                height={400}
+                                width={400}
+                                height={600}
                                 className="w-full h-full object-fill rounded-3xl xl:rounded-lg"
                             />
                         </motion.div>
@@ -57,10 +80,10 @@ const CollectionCard = (props: Props) => {
                             className="cursor-pointer h-full w-full"
                         >
                             <Image
-                                src="/banner.jpg"
+                                src={collections[1].src}
                                 alt="banner"
-                                width={300}
-                                height={400}
+                                width={400}
+                                height={600}
                                 className="h-full w-full object-fill rounded-3xl xl:rounded-lg"
                             />
                         </motion.div>
@@ -100,10 +123,10 @@ const CollectionCard = (props: Props) => {
                             className="cursor-pointer h-full w-full"
                         >
                             <Image
-                                src="/banner.jpg"
+                                src={collections[2].src}
                                 alt="banner"
-                                width={300}
-                                height={400}
+                                width={400}
+                                height={600}
                                 className="h-full w-full object-fill rounded-3xl xl:rounded-lg"
                             />
                         </motion.div>
@@ -130,10 +153,12 @@ const CollectionCard = (props: Props) => {
                                 className="flex flex-col justify-center items-center xl:col-start-7 xl:col-span-3 xl:row-start-1 xl:row-span-2 "
                             >
                                 <div className="flex flex-col justify-center h-full w-full ">
-                                    <h1 className="text-[80px] font-extrabold text-[#aaff64]">
-                                        Text here
+                                    <h1 className="text-6xl font-extrabold text-[#aaff64]">
+                                        {collections[0]?.title}
                                     </h1>
-                                    <h3></h3>
+                                    <h3 className="text-white text-lg">
+                                        {collections[0]?.description}
+                                    </h3>
                                 </div>
                             </motion.div>
 
@@ -153,10 +178,12 @@ const CollectionCard = (props: Props) => {
                                 className="flex flex-col justify-center items-center xl:col-start-3 xl:col-span-3 xl:row-start-3 xl:row-span-2 "
                             >
                                 <div className="flex flex-col justify-center items-end h-full w-full ">
-                                    <h1 className="text-[80px] font-extrabold text-[#aaff64]">
-                                        Text here
+                                    <h1 className="text-6xl font-extrabold text-[#aaff64]">
+                                        {collections[1]?.title}
                                     </h1>
-                                    <h3></h3>
+                                    <h3 className="text-white text-lg">
+                                        {collections[1]?.description}
+                                    </h3>
                                 </div>
                             </motion.div>
 
@@ -171,10 +198,12 @@ const CollectionCard = (props: Props) => {
                                 className="flex flex-col justify-center items-center xl:col-start-7 xl:col-span-3 xl:row-start-5 xl:row-span-2 "
                             >
                                 <div className="flex flex-col justify-center  h-full w-full ">
-                                    <h1 className="text-[80px] font-extrabold text-[#aaff64]">
-                                        Text here
+                                    <h1 className="text-6xl font-extrabold text-[#aaff64]">
+                                        {collections[2]?.title}
                                     </h1>
-                                    <h3></h3>
+                                    <h3 className="text-white text-lg">
+                                        {collections[2]?.description}
+                                    </h3>
                                 </div>
                             </motion.div>
                         </>

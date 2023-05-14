@@ -21,11 +21,11 @@ type Props = {};
 
 // const images = ['/banner.jpg', '/banner.jpg', '/banner.jpg', '/banner.jpg', '/banner.jpg'];
 const images = [
-    { id: 1, src: '/banner.jpg' },
-    { id: 2, src: '/banner.jpg' },
-    { id: 3, src: '/banner.jpg' },
-    { id: 4, src: '/banner.jpg' },
-    { id: 5, src: '/banner.jpg' },
+    { id: 1, src: '/assets/collection/jd1-high-retro-chicago.jpg' },
+    { id: 2, src: '/assets/collection/air-force-1-low-skeleton.jpg' },
+    { id: 3, src: '/assets/collection/happy-air-max-day.jpg' },
+    { id: 4, src: '/assets/collection/jd1-high-retro-chicago.jpg' },
+    { id: 5, src: '/assets/collection/air-force-1-low-skeleton.jpg' },
 ];
 
 function SlideImage(props: Props) {
@@ -114,7 +114,7 @@ function SlideImage(props: Props) {
                                             alt={image.src}
                                             width="580"
                                             height="480"
-                                            className="w-full h-full "
+                                            className="w-full h-full"
                                             onDragStart={(event) => event.preventDefault()}
                                         ></Image>
                                         <div className="z-10 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] flex flex-col justify-center items-center text-center">
