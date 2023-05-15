@@ -200,7 +200,6 @@ const SplashScreen = (props: Props) => {
 
     //     return () => window.removeEventListener('load', isMounted);
     // }, [isLoading]);
-    console.log(progress);
 
     const divRef = useRef<HTMLDivElement | null>(null);
     useEffect(() => {

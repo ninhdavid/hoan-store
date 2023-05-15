@@ -29,6 +29,7 @@
     "@nx/react": "16.1.1",
     "@nx/webpack": "16.1.1",
     "@reduxjs/toolkit": "1.9.5",
+    "@studio-freight/react-lenis": "^0.0.19",
     "@testing-library/react": "14.0.0",
     "@types/express": "4.17.13",
     "@types/jest": "^29.4.0",

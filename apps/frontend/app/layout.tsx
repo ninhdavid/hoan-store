@@ -14,6 +14,7 @@ import SplashScreen from '@/components/Common/Loader/SplashScreen';
 import { Metadata } from 'next';
 
 import localFont from 'next/font/local';
+import ScrollSmoothLenis from '@/components/Common/ScrollSmooth';
 const modernEra = localFont({
     src: [
         {
@@ -72,10 +73,12 @@ export default function RootLayout({
                 <StyledComponentsRegistry>
                     <main className="app">
                         <Providers>
-                            <SplashScreen />
-                            <Header />
-                            {children}
-                            <Footer />
+                            <ScrollSmoothLenis>
+                                <SplashScreen />
+                                <Header />
+                                {children}
+                                <Footer />
+                            </ScrollSmoothLenis>
                         </Providers>
                     </main>
                 </StyledComponentsRegistry>
