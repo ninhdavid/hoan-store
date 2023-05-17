@@ -1,6 +1,5 @@
 'use client';
-import { Lenis as ReactLenis, useLenis } from '@studio-freight/react-lenis';
-import { useEffect } from 'react';
+import { Lenis as ReactLenis } from '@studio-freight/react-lenis';
 
 type ScrollSmoothLenisProps = {
     children: React.ReactNode;
@@ -10,9 +9,9 @@ function ScrollSmoothLenis(props: ScrollSmoothLenisProps) {
         // Các tùy chọn của Lenis
         duration: 1.2,
         easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        gestureDirection: 'vertical',
-        smooth: true,
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
         smoothTouch: false,
         touchMultiplier: 2,
     };

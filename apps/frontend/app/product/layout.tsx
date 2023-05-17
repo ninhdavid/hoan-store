@@ -1,8 +1,12 @@
+import { Metadata } from 'next';
 import React from 'react';
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 type Props = {};
-
+export const metadata: Metadata = {
+    title: 'Product',
+    description: 'Product detail',
+};
 export default function ProductLayout({
     children, // will be a page or nested layout
 }: {

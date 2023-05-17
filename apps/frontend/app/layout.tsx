@@ -8,13 +8,16 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/swiper.min.css';
 import '../styles/styles.css';
-import Head from './head';
 import { Providers } from './provider';
 import SplashScreen from '@/components/Common/Loader/SplashScreen';
 import { Metadata } from 'next';
 
 import localFont from 'next/font/local';
 import ScrollSmoothLenis from '@/components/Common/ScrollSmooth';
+import TransitionPage from '@/components/Common/Loader/PageTransition';
+import Head from './head';
+import PageTransition from '@/components/Common/Loader/PageTransition';
+
 const modernEra = localFont({
     src: [
         {
@@ -56,10 +59,10 @@ const modernEra = localFont({
     // display: 'swap',
     variable: '--font-modernEra',
 });
-export const metadata: Metadata = {
-    title: 'Home',
-    description: 'Welcome to frontend!',
-};
+// export const metadata: Metadata = {
+//     title: 'Home',
+//     description: 'Welcome to frontend!',
+// };
 export default function RootLayout({
     // Layouts must accept a children prop.
     // This will be populated with nested layouts or pages
@@ -69,6 +72,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${modernEra.variable} font-sans`}>
+            <Head />
             <body>
                 <StyledComponentsRegistry>
                     <main className="app">
@@ -76,7 +80,7 @@ export default function RootLayout({
                             <ScrollSmoothLenis>
                                 <SplashScreen />
                                 <Header />
-                                {children}
+                                <PageTransition>{children}</PageTransition>
                                 <Footer />
                             </ScrollSmoothLenis>
                         </Providers>

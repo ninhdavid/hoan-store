@@ -51,6 +51,9 @@ const Header = (props: Props) => {
             }
             setLastScrollY(scrollY);
         }
+        if (scrollY === 0) {
+            setShowHeader(true);
+        }
     };
 
     useEffect(() => {
@@ -109,7 +112,7 @@ const Header = (props: Props) => {
                         <div className="flex-1 lg:block hidden ">
                             <div className="w-[70%] lg:w-[90%] xl:w-[70%] 2xl:w-[60%]">
                                 <NavHoverStyled className="w-[100%] flex justify-between items-center ">
-                                    <div className="w-[100%] flex justify-between items-center divHover">
+                                    <nav className="w-[100%] flex justify-between items-center divHover">
                                         <motion.div
                                             onClick={() => handleOpenShop('shopModalMenu')}
                                             className="flex items-center hover:cursor-pointer linkHover"
@@ -129,7 +132,7 @@ const Header = (props: Props) => {
                                                 CO-BRAND
                                             </span>
                                         </div>
-                                    </div>
+                                    </nav>
                                 </NavHoverStyled>
                             </div>
                         </div>

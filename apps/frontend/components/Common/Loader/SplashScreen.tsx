@@ -218,7 +218,7 @@ const SplashScreen = (props: Props) => {
     return (
         <SplashLoadStyled isLoading={isLoading}>
             <main className="fixed top-0 bottom-0 right-0 left-0 z-[30]" ref={divRef}>
-                <div className="absolute w-[100svw] h-[100svh] top-0 left-0 flex  justify-center bg-gray-500">
+                <div className="absolute w-[100svw] h-[100svh] top-0 left-0 flex  justify-center bg-gray-950">
                     <div className="w-[98svw] my-[2svh] bg-white  rounded-3xl flex items-center justify-center content-wrapper">
                         <div className="flex items-center justify-center flex-col content">
                             <span className="text-center text-5xl font-medium item-opacity">
